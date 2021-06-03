@@ -1,0 +1,105 @@
+@import '~sanitize.css';
+// sanitize.css是一个CSS库，修正了各种浏览器中缺失的样式，规范了许多元素的样式，纠正了错误和常见的浏览器不一致性
+html {
+  font-family: 'PingFang SC', sans-serif;
+  font-size: 14px;
+}
+
+ol,
+ul {
+  padding: 0;
+}
+
+svg:not([fill]) {
+  fill: inherit;
+}
+
+table.tooltip-table {
+  text-align: left;
+  thead {
+    color: #ffffff;
+    tr {
+      background-color: transparent;
+      th {
+        background-color: transparent;
+        padding: 6px;
+        border-right: 1px solid #a7a7a7;
+        border-bottom: 1px solid #a7a7a7;
+      }
+    }
+  }
+  tbody {
+    tr {
+      background-color: transparent;
+      td {
+        padding: 6px;
+        border-right: 1px solid #a7a7a7;
+        border-bottom: 1px solid #a7a7a7;
+      }
+    }
+  }
+}
+
+/* editor */
+.tox-dialog__body {
+  div {
+    .tox-textfield {
+      &:focus {
+        border-color:  #b7b7b7;
+      }
+    }
+  }
+}
+
+.tox-dialog__footer {
+  div {
+    .tox-button {
+      background-color: #ee4d2d;
+      border-color: #ee4d2d;
+      font-weight: normal;
+
+      &:hover:not(:disabled){
+        background-color: #c92f11;
+        border-color: #c92f11;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    .tox-button--secondary {
+      background-color: #fff;
+      border-color: #ee4d2d;
+      color: #ee4d2d;
+
+      &:hover:not(:disabled) {
+        color: #ee4d2d;
+        border-color: #ee4d2d;
+        background-color: rgba(238,77,45,.04);
+      }
+    }
+  }
+}
+/* editor end*/
+
+/* editor display*/
+.mce-content-body {
+  a {
+    color: #ee4d2d;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #ee4d2d;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+}
+/* editor display end*/

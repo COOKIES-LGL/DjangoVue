@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    // "strict": true,  // 默认不开启严格模式
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
@@ -13,11 +13,15 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "node"
     ],
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@icon": [
+        "src/assets/svg"
       ]
     },
     "lib": [
