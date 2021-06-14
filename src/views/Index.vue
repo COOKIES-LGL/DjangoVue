@@ -2,7 +2,7 @@
   <div class="index-content-box">
     <SearchIndex></SearchIndex>
     <CategoryIndex/>
-    <
+    <Footer/>
   </div>
 </template>
 
@@ -10,11 +10,13 @@
 import { Options, Vue } from 'vue-class-component';
 import SearchIndex from '@/components/search/SearchIndex.vue';
 import CategoryIndex from '@/components/category/CategoryIndex.vue';
+import Footer from '@/components/Footer.vue';
 
 @Options({
   components: {
     SearchIndex,
     CategoryIndex,
+    Footer,
   },
 })
 export default class Home extends Vue {}
