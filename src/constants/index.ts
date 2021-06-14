@@ -1,5 +1,4 @@
-export const ErrorCodes = {
-  SUCCESS: 0,
-  NOT_LOGIN: 1001,
-  LOGIN_ERR: 1002,
-};
+export * from './constant';
+export * from './mock';
+export * from './search';
+export * from './types';
