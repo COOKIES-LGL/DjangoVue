@@ -1,7 +1,6 @@
 <template>
   <div class="index-content-box">
-    <SearchIndex></SearchIndex>
-    <CategoryIndex/>
+    OnlineTool
   </div>
 </template>
 
@@ -16,7 +15,7 @@ import CategoryIndex from '@/components/category/CategoryIndex.vue';
     CategoryIndex,
   },
 })
-export default class Index extends Vue {}
+export default class OnlineTool extends Vue {}
 </script>
 <style scoped lang="less">
 .index-content-box {
@@ -25,6 +24,6 @@ export default class Index extends Vue {}
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;;
+  align-items: center;
 }
 </style>

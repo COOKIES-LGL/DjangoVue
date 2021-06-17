@@ -49,3 +49,10 @@ export const SideBarMenu = [
 
 // 在线五子棋 http://html5.huceo.com/wzq/
 // 渐进式表单输入
+// 常用开源包 ioredis
+// pycharm注册码 http://vrg123.com/
+// Docker Hub https://hub.docker.com/search?q=mysql&type=image 
+// 脉脉
+// 3D three.js 制作三D展厅
+// can i use
+// 使用A标签进行跳转

@@ -1,22 +1,16 @@
 <template>
   <div class="index-content-box">
-    <SearchIndex></SearchIndex>
-    <CategoryIndex/>
+    RankList
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import SearchIndex from '@/components/search/SearchIndex.vue';
-import CategoryIndex from '@/components/category/CategoryIndex.vue';
 
 @Options({
-  components: {
-    SearchIndex,
-    CategoryIndex,
-  },
+  components: {},
 })
-export default class Index extends Vue {}
+export default class RankList extends Vue {}
 </script>
 <style scoped lang="less">
 .index-content-box {
@@ -25,6 +19,6 @@ export default class Index extends Vue {}
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;;
+  align-items: center;
 }
 </style>

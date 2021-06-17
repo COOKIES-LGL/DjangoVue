@@ -10,6 +10,7 @@
       </div>
     </div>
   </div>
+  <Footer/>
   <el-backtop target=".home-box"></el-backtop>
 </template>
 
@@ -17,11 +18,13 @@
 import { Options, Vue } from 'vue-class-component';
 import HeaderBar from '@/components/HeaderBar.vue'; // @ is an alias to /src
 import SideBar from '@/components/SideBar.vue';
+import Footer from '@/components/Footer.vue';
 
 @Options({
   components: {
     HeaderBar,
     SideBar,
+    Footer,
   },
 })
 export default class Home extends Vue {}
@@ -33,6 +36,7 @@ export default class Home extends Vue {}
   flex-direction: row;
   width: 100%;
   height: auto;
+  min-height: 100vh;
   .home-content-box {
     display: flex;
     flex-direction: column;

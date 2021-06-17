@@ -55,10 +55,26 @@ export const SearchTabList = [
         url: 'https://so.csdn.net/so/search?q=',
       },
       {
+        label: '思否',
+        holdplace: '思否搜索',
+        url: 'https://segmentfault.com/search?q=',
+      },
+      {
         label: 'GitHub',
         holdplace: 'GitHub Search',
         url: 'https://github.com/search?q=',
       },
+      {
+        label: 'LeetCode',
+        holdplace: '请输入题目名称或编号',
+        url: 'https://leetcode-cn.com/problemset/all/?search=',
+      },
+    ],
+  },
+  {
+    label: '开源仓库',
+    value: 'resourceStore',
+    children: [
       {
         label: 'Pip',
         holdplace: 'Python Pip Search',
@@ -70,9 +86,14 @@ export const SearchTabList = [
         url: 'https://www.npmjs.com/search?q=',
       },
       {
-        label: 'LeetCode',
-        holdplace: '请输入题目名称或编号',
-        url: 'https://leetcode-cn.com/problemset/all/?search=',
+        label: 'Conan',
+        holdplace: 'Conan C++依赖搜索',
+        url: 'https://conan.io/center/',
+      },
+      {
+        label: 'Docker Hub',
+        holdplace: 'docker镜像搜索',
+        url: 'https://hub.docker.com/search?q=',
       },
     ],
   },
@@ -132,8 +153,8 @@ export const SearchTabList = [
         url: 'https://music.163.com/#/search/m/?s=',
       },
       {
-        label: 'B站',
-        holdplace: 'Bli Bli搜索',
+        label: 'Bili Bili',
+        holdplace: 'Bili Bili搜索',
         url: 'https://search.bilibili.com/all?keyword=',
       },
       {

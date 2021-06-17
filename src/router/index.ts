@@ -23,19 +23,19 @@ const routes: Array<RouteRecordRaw> = [
         path: '/ranklist',
         name: 'rankList',
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutUs.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/RankList.vue')
       },
       {
         path: '/siteCollect',
         name: 'siteCollect',
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutUs.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/SiteCollect.vue')
       },
       {
         path: '/onlineTool',
         name: 'onlineTool',
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutUs.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/OnlineTool.vue')
       }
     ]
   },
