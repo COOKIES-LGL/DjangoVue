@@ -9,12 +9,21 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/',
+        name: 'home',
+        meta: {
+          title: '归零@you',
+        },
+        component: () =>
+          import(/* webpackChunkName: "Index" */ '../views/Index.vue'),
+      },
+      {
+        path: '/discover',
         name: 'discover',
         meta: {
           title: '发现',
         },
         component: () =>
-          import(/* webpackChunkName: "Index" */ '../views/Index.vue'),
+          import(/* webpackChunkName: "CategoryIndex" */ '../views/category/Category.vue'),
       },
       {
         path: '/aboutus',

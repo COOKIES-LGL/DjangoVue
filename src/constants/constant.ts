@@ -5,6 +5,7 @@ export const ErrorCodes = {
 };
 
 export const HeaderBarMenu = [
+  { label: '首页', value: 'home'},
   { label: '发现', value: 'discover'},
   { label: '我的博客', value: 'myBlog'},
   { label: '网址收录', value: 'siteCollect'},

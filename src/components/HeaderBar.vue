@@ -1,11 +1,15 @@
 <template>
   <div class="header-bar-box">
-    <div class="menu-left"><i class="el-icon-heavy-rain icon-box"></i><div>深圳</div></div>
+    <div class="menu-left">
+      <i class="el-icon-heavy-rain icon-box"></i>
+      <div>深圳</div>
+    </div>
     <ul class="menu-list">
       <li
-        v-for="item in HeaderBarMenu"
+        :class="{ currentClass: index === HeaderBar.currentIndex }"
+        v-for="(item, index) in HeaderBarMenu"
         :key="item.value"
-        @click="HeaderBar.navTo(item)"
+        @click="HeaderBar.navTo(item, index)"
       >
         {{ item.label }}
       </li>
@@ -17,6 +21,7 @@
 import { Options, Vue, setup } from 'vue-class-component';
 import { HeaderBarMenu, HeaderBarMenuType } from '@/constants';
 import Router from '@/router/index';
+import { ref } from 'vue';
 
 @Options({
   props: {
@@ -27,14 +32,17 @@ export default class HeaderBar extends Vue {
   private HeaderBarMenu: HeaderBarMenuType[] = HeaderBarMenu;
 
   private HeaderBar = setup(() => {
-    const navTo = (item: HeaderBarMenuType) => {
-      console.log(item);
+    const currentIndex = ref<number>(0);
+    const navTo = (item: HeaderBarMenuType, index: number) => {
+      console.log(item, index);
       Router.push({
-        name: item.value
-      })
+        name: item.value,
+      });
+      currentIndex.value = index;
     };
     return {
       navTo,
+      currentIndex,
     };
   });
 }
@@ -78,6 +86,9 @@ export default class HeaderBar extends Vue {
       &:hover {
         color: @infomation3;
       }
+    }
+    .currentClass {
+      border-bottom: 2px solid @infomation3;
     }
   }
 }
