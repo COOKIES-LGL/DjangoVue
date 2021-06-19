@@ -6,9 +6,9 @@ export const ErrorCodes = {
 
 export const HeaderBarMenu = [
   { label: '发现', value: 'discover'},
-  { label: '榜单', value: 'ranksList'},
+  { label: '我的博客', value: 'myBlog'},
   { label: '网址收录', value: 'siteCollect'},
-  { label: '摸鱼广场', value: 'onlineTool'},
+  { label: '在线工具', value: 'onlineTool'},
   { label: '关于我们', value: 'aboutUs'},
 ];
 

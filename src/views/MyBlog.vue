@@ -1,6 +1,6 @@
 <template>
   <div class="index-content-box">
-    RankList
+    <a href="https://COOKIES-LGL.github.io">归零@you</a>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import { Options, Vue } from 'vue-class-component';
 @Options({
   components: {},
 })
-export default class RankList extends Vue {}
+export default class MyBlog extends Vue {}
 </script>
 <style scoped lang="less">
 .index-content-box {
