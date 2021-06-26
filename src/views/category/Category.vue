@@ -1,30 +1,46 @@
 <template>
-  <div class="category-box">
-    <div class="category-title"><i class="el-icon-discount"></i>前端</div>
-    <el-divider></el-divider>
-    <!-- <el-tabs
-      v-model="CategoryIndex.activeName"
-      type="card"
-      @tab-click="CategoryIndex.handleTabClick"
-    >
-      <el-tab-pane
-        v-for="(item, index) in SearchTabList"
-        :key="index"
-        :label="item.label"
-        :name="item.value"
-      ></el-tab-pane>
-    </el-tabs> -->
-  </div>
+  <CardPage>
+    <template v-slot:content>
+      <div class="block">
+        <span class="demonstration">Click 指示器触发</span>
+        <el-carousel trigger="click" height="150px">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3 class="small">{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+      <div class="category-box">
+        <div class="category-title"><i class="el-icon-discount"></i>前端</div>
+        <el-divider></el-divider>
+        <!-- <el-tabs
+          v-model="CategoryIndex.activeName"
+          type="card"
+          @tab-click="CategoryIndex.handleTabClick"
+        >
+          <el-tab-pane
+            v-for="(item, index) in SearchTabList"
+            :key="index"
+            :label="item.label"
+            :name="item.value"
+          ></el-tab-pane>
+        </el-tabs> -->
+      </div>
+      <!-- <el-empty description="暂无数据"></el-empty> -->
+    </template>
+  </CardPage>
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import { ref, watch } from 'vue';
+import CardPage from '@/components/CardPage.vue';
 
 @Options({
   props: {
     type: String,
   },
-  components: {},
+  components: {
+    CardPage,
+  },
 })
 export default class Category extends Vue {
   private type: string;
@@ -45,8 +61,13 @@ export default class Category extends Vue {
 }
 </script>
 <style scoped lang="less">
+.block {
+  width: 92%;
+  margin: 20px auto;
+  background: #ffffff;
+}
 .category-box {
-  width: 96%;
+  width: 92%;
   margin: 0 auto;
   height: auto;
   display: flex;

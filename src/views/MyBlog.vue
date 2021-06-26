@@ -1,24 +1,19 @@
 <template>
-  <div class="index-content-box">
-    <a href="https://COOKIES-LGL.github.io">归零@you</a>
-  </div>
+  <CardPage>
+    <template v-slot:content>
+      <a href="https://COOKIES-LGL.github.io">归零@you</a>
+    </template>
+  </CardPage>
 </template>
-
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import CardPage from '@/components/CardPage.vue';
 
 @Options({
-  components: {},
+  components: {
+    CardPage,
+  },
 })
 export default class MyBlog extends Vue {}
 </script>
-<style scoped lang="less">
-.index-content-box {
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-</style>
+<style scoped lang="less"></style>
