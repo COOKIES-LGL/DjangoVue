@@ -83,7 +83,7 @@ export default class SearchSelect extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 @import '../../styles/constants.less';
-/deep/ .el-tabs__item {
+::v-deep .el-tabs__item {
   font-size: 16px;
 }
 .search-bottom {

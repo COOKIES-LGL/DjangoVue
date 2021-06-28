@@ -5,11 +5,7 @@
       v-model="SearchInput.searchValue"
       v-on:keyup.enter="SearchInput.changeInput"
       :placeholder="SearchInput.configValue.holdplace"
-      ><template v-slot:suffix
-        ><i
-          @click="SearchInput.changeInput"
-          class="el-icon-search"
-        ></i></template
+      ><template v-slot:suffix><i @click="SearchInput.changeInput" class="el-icon-search"></i></template
     ></el-input>
   </div>
 </template>
@@ -52,7 +48,7 @@ export default class SearchInput extends Vue {
 .search-input-box {
   width: 700px;
   height: 50px;
-  /deep/ .el-input {
+  ::v-deep .el-input {
     line-height: 50px;
     .el-input__inner {
       height: 50px;

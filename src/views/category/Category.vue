@@ -33,6 +33,7 @@
 import { Options, Vue, setup } from 'vue-class-component';
 import { ref, watch } from 'vue';
 import CardPage from '@/components/CardPage.vue';
+import { useStore } from "vuex";
 
 @Options({
   props: {
@@ -46,6 +47,10 @@ export default class Category extends Vue {
   private type: string;
 
   private CategoryIndex = setup(() => {
+    const store = useStore();
+    store.dispatch('getCategoryList');
+    const state = store.state;
+    console.log(state,111);
     const searchValue = ref<string>(null);
     const changeCollapse = () => {
       console.log(111);

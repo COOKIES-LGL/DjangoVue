@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
           import(/* webpackChunkName: "CategoryIndex" */ '../views/category/Category.vue'),
       },
       {
-        path: '/aboutus',
+        path: '/aboutUs',
         name: 'aboutUs',
         meta: {
           title: '关于我们',
@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
           import(/* webpackChunkName: "AboutUs" */ '../views/AboutUs.vue'),
       },
       {
-        path: '/myblog',
+        path: '/myBlog',
         name: 'myBlog',
         meta: {
           title: '我的博客',

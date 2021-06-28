@@ -6,10 +6,10 @@
     </div>
     <ul class="menu-list">
       <li
-        :class="{ currentClass: index === HeaderBar.currentIndex }"
-        v-for="(item, index) in HeaderBarMenu"
+        :class="{ currentClass: item.value === HeaderBar.currentIndex }"
+        v-for="item in HeaderBarMenu"
         :key="item.value"
-        @click="HeaderBar.navTo(item, index)"
+        @click="HeaderBar.navTo(item)"
       >
         {{ item.label }}
       </li>
@@ -21,7 +21,8 @@
 import { Options, Vue, setup } from 'vue-class-component';
 import { HeaderBarMenu, HeaderBarMenuType } from '@/constants';
 import Router from '@/router/index';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 @Options({
   props: {
@@ -32,14 +33,24 @@ export default class HeaderBar extends Vue {
   private HeaderBarMenu: HeaderBarMenuType[] = HeaderBarMenu;
 
   private HeaderBar = setup(() => {
-    const currentIndex = ref<number>(0);
-    const navTo = (item: HeaderBarMenuType, index: number) => {
-      console.log(item, index);
+    const currentIndex = ref<string>('home');
+    const navTo = (item: HeaderBarMenuType) => {
+      console.log(item);
       Router.push({
         name: item.value,
       });
-      currentIndex.value = index;
+      currentIndex.value = item.value;
     };
+    const route = useRoute();
+    watch(
+      () => route.path,
+      (newValue: string) => {
+        currentIndex.value = newValue === '/' ? 'home' : newValue.slice(1);
+      },
+      {
+        immediate: true,
+      }
+    );
     return {
       navTo,
       currentIndex,
@@ -89,6 +100,7 @@ export default class HeaderBar extends Vue {
     }
     .currentClass {
       border-bottom: 2px solid @infomation3;
+      color: @infomation3;
     }
   }
 }

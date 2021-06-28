@@ -3,7 +3,7 @@ import { ENV } from '@/config';
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 
-const baseURL: string = `${ENV.HOST}${process.env.basePublicPath}api`;
+const baseURL: string = `${ENV.HOST}${ENV.BASE_URL}api`;
 
 Cookies.set('SPC_CDS_VER', '2');
 
@@ -40,7 +40,7 @@ api.interceptors.response.use(
       response.data &&
       (response.data.code === ErrorCodes.NOT_LOGIN || response.data.code === ErrorCodes.LOGIN_ERR)
     ) {
-    //   Toast.$instance.error('请登录！');
+      //   Toast.$instance.error('请登录！');
       return Promise.reject(new Error('401'));
     }
     return response;
@@ -69,7 +69,7 @@ export function handleResponse(
   const { successMessage, errorMessage } = customParams;
   const onFulfilled = (response: AxiosResponse) => {
     if (successMessage) {
-    //   Toast.$instance.success(successMessage);
+      //   Toast.$instance.success(successMessage);
     }
     return response.data;
   };
