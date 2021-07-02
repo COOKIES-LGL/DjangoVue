@@ -1,8 +1,5 @@
 <template>
   <div class="home-box">
-    <div class="home-side-box">
-      <SideBar></SideBar>
-    </div>
     <div class="home-content-box">
       <HeaderBar></HeaderBar>
       <div class="home-content-inner">
@@ -24,13 +21,11 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import HeaderBar from '@/components/HeaderBar.vue'; // @ is an alias to /src
-import SideBar from '@/components/SideBar.vue';
 import Footer from '@/components/Footer.vue';
 
 @Options({
   components: {
     HeaderBar,
-    SideBar,
     Footer,
   },
 })
@@ -52,6 +47,8 @@ export default class Home extends Vue {}
     .home-content-inner {
       width: 100%;
       padding-top: 74px;
+      display: flex;
+      flex-direction: row;
     }
   }
 }

@@ -38,10 +38,19 @@ const routes: Array<RouteRecordRaw> = [
         path: '/myBlog',
         name: 'myBlog',
         meta: {
-          title: '我的博客',
+          title: '博客广场',
         },
         component: () =>
           import(/* webpackChunkName: "Mylog" */ '../views/MyBlog.vue'),
+      },
+      {
+        path: '/interview',
+        name: 'interview',
+        meta: {
+          title: '面经广场',
+        },
+        component: () =>
+          import(/* webpackChunkName: "Interview" */ '../views/interview/index.vue'),
       },
       {
         path: '/siteCollect',
@@ -62,7 +71,7 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "OnlineTool" */ '../views/OnlineTool.vue'
+            /* webpackChunkName: "OnlineTool" */ '../views/onlineTool/index.vue'
           ),
       },
       {

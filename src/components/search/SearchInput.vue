@@ -1,6 +1,6 @@
 <template>
   <div class="search-input-box">
-    <div v-if="type === 'small'"></div>
+    <!-- <div v-if="type === 'inner'"></div> -->
     <el-input
       v-model="SearchInput.searchValue"
       v-on:keyup.enter="SearchInput.changeInput"
@@ -48,6 +48,8 @@ export default class SearchInput extends Vue {
 .search-input-box {
   width: 700px;
   height: 50px;
+  display: flex;
+  flex-direction: row;
   ::v-deep .el-input {
     line-height: 50px;
     .el-input__inner {

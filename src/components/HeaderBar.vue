@@ -65,17 +65,19 @@ export default class HeaderBar extends Vue {
 .header-bar-box {
   height: 74px;
   width: 100%;
+  padding-left: 250px;
   display: flex;
   flex-direction: row;
   align-items: center;
   position: fixed;
-  z-index: 1001;
+  z-index: 999;
   background: #ffffff;
   border-bottom: @border-color solid 1px;
   .menu-left {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-size: 16px;
     .icon-box {
       height: 25px;
       width: 25px;
@@ -91,8 +93,10 @@ export default class HeaderBar extends Vue {
     flex-direction: row;
     color: @text-primary;
     margin-left: 40px;
+    font-size: 16px;
+    font-weight: bold;
     li {
-      margin-left: 20px;
+      margin-left: 25px;
       cursor: pointer;
       &:hover {
         color: @infomation3;

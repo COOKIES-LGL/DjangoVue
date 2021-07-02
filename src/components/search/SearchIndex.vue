@@ -1,8 +1,8 @@
 <template>
-  <div class="search-box">
+  <div class="search-box" :class="{searchInnerType: type === 'inner'}">
     <SearchSelect>
       <template v-slot:input="props"
-        ><SearchInput :configData="props.data"
+        ><SearchInput :type="type" :configData="props.data"
       /></template>
     </SearchSelect>
   </div>
@@ -15,7 +15,7 @@ import SearchSelect from './SearchSelect.vue';
 
 @Options({
   props: {
-    msg: String,
+    type: String,
   },
   components: {
     SearchInput,
@@ -23,6 +23,7 @@ import SearchSelect from './SearchSelect.vue';
   },
 })
 export default class SearchIndex extends Vue {
+  private type: string;
   private SearchTabList: SearchTabListType[] = SearchTabList;
   private SearchIndex = setup(() => {
     return {
@@ -41,5 +42,8 @@ export default class SearchIndex extends Vue {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.searchInnerType {
+  height: 200px;
 }
 </style>

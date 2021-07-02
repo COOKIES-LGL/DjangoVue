@@ -6,10 +6,11 @@ export const ErrorCodes = {
 
 export const HeaderBarMenu = [
   { label: '首页', value: 'home' },
-  { label: '发现', value: 'discover' },
-  { label: '我的博客', value: 'myBlog' },
-  { label: '网址收录', value: 'siteCollect' },
+  { label: '网址发现', value: 'discover' },
+  { label: '博客广场', value: 'myBlog' },
+  { label: '面经广场', value: 'interview' },
   { label: '在线工具', value: 'onlineTool' },
+  { label: '网址收录', value: 'siteCollect' },
   { label: '关于我们', value: 'aboutUs' },
 ];
 
@@ -64,6 +65,8 @@ export const CollectionRequest = [
 // 脉脉
 // 3D three.js 制作三D展厅
 // can i use
+// https://tool.lu/coderunner/ 类似codepen
+
 // 使用A标签进行跳转
 // 图片制作,(gif表情, 任意格式图片)
 // 更改首页
@@ -74,3 +77,7 @@ export const CollectionRequest = [
 // ejs
 
 // exec-sh
+// simple-git
+// fs-extra
+// 在console 中输入内容
+// https://tool.lu/c/geek/

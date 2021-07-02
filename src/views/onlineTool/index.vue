@@ -46,7 +46,7 @@ import Category from './Category.vue';
     Category,
   },
 })
-export default class Discover extends Vue {
+export default class OnlineTool extends Vue {
   private type: string;
   private DiscoverIndex = setup(async () => {
     const store = useStore();
