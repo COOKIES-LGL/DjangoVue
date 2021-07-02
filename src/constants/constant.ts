@@ -69,5 +69,8 @@ export const CollectionRequest = [
 // 更改首页
 // 留意域名
 // 限制用户提交次数
+// 您的文章内容质量高将会替换原文章链接
 // gulp
 // ejs
+
+// exec-sh

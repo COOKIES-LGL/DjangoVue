@@ -1,32 +1,32 @@
-import { createStore } from 'vuex'
-import { getCategoryList } from '@/api';
+import { createStore } from 'vuex';
+import { getCategoryList, LinkCategoryItemType } from '@/api';
 
 export default createStore({
   state: {
-    relatedArticles: [],
+    allLinkCategory: [],
+  },
+  getters: {
+    getAllLinkCategory (state: any) {
+      return state.allLinkCategory;
+    }
   },
   mutations: {
-    set_category_list(state: any, data: any) {
-      state.relatedArticles = data;
+    set_all_link_category(state: any, data: LinkCategoryItemType[]) {
+      state.allLinkCategory = data;
     },
   },
   actions: {
-    async getCategoryList({ commit }: any, params: any) {
-      commit('set_category_list', []);
+    async getCategoryList({ commit }: any) {
+      commit('set_all_link_category', []);
       const res = await getCategoryList();
-      console.log(res);
-      // if (res && res.data && res.data.length) {
-        // res.articles.map((item: any) => {
-        //   item.article_id = item.id;
-        // });
-        // commit('set_related_articles', res.articles);
-        // return res.articles;
-      // } else {
-      //   commit('set_related_articles', []);
-      //   return [];
-      // }
+      if (res && res.data && res.data.length) {
+        commit('set_all_link_category', res.data);
+        return res.data;
+      } else {
+        commit('set_all_link_category', []);
+        return [];
+      }
     },
   },
-  modules: {
-  }
-})
+  modules: {},
+});

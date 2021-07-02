@@ -9,6 +9,7 @@
           </el-carousel-item>
         </el-carousel>
       </div>
+      <category></category>
       <div class="category-box">
         <div class="category-title"><i class="el-icon-discount"></i>前端</div>
         <el-divider></el-divider>
@@ -31,9 +32,10 @@
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch } from 'vue';
+import { ref, watch, onBeforeMount } from 'vue';
 import CardPage from '@/components/CardPage.vue';
-import { useStore } from "vuex";
+import { useStore } from 'vuex';
+import Category from './Category.vue';
 
 @Options({
   props: {
@@ -41,16 +43,17 @@ import { useStore } from "vuex";
   },
   components: {
     CardPage,
+    Category,
   },
 })
 export default class Discover extends Vue {
   private type: string;
-
-  private DiscoverIndex = setup(() => {
+  private DiscoverIndex = setup(async () => {
     const store = useStore();
-    store.dispatch('getCategoryList');
-    const state = store.state;
-    console.log(state,111);
+    onBeforeMount(() => {
+      console.log(111111);
+    });
+    await store.dispatch('getCategoryList');
     const searchValue = ref<string>(null);
     const changeCollapse = () => {
       console.log(111);

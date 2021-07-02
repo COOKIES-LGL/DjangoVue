@@ -6,11 +6,18 @@
     <div class="home-content-box">
       <HeaderBar></HeaderBar>
       <div class="home-content-inner">
-        <router-view></router-view>
+        <suspense>
+          <template #default>
+            <router-view></router-view>
+          </template>
+          <template #fallback>
+            <div>加载中...</div>
+          </template>
+        </suspense>
       </div>
     </div>
   </div>
-  <Footer/>
+  <Footer />
   <el-backtop target=".home-box"></el-backtop>
 </template>
 

@@ -1,11 +1,14 @@
 <template>
-  <div class="filter-box"></div>
+  <div class="filter-box">
+
+  </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch } from 'vue';
+import { watch, reactive } from 'vue';
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
 
 @Options({
   props: {
@@ -14,19 +17,24 @@ import { useRoute } from 'vue-router';
 })
 export default class Filter extends Vue {
   private HeaderBar = setup(() => {
-    const currentIndex = ref<string>('home');
+    const filterObject = reactive({
+      category_lv1: '11'
+    });
+    const store = useStore();
+    const state = store.state;
+    console.log(state, 111);
     const route = useRoute();
     watch(
       () => route.path,
       (newValue: string) => {
-        currentIndex.value = newValue === '/' ? 'home' : newValue.slice(1);
+        filterObject.category_lv1 = newValue === '/' ? 'home' : newValue.slice(1);
       },
       {
         immediate: true,
       }
     );
     return {
-      currentIndex,
+      filterObject,
     };
   });
 }

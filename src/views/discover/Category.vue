@@ -8,6 +8,11 @@ import { Options, Vue, setup } from 'vue-class-component';
 import { ref, watch } from 'vue';
 import Filter from '@/components/Filter.vue';
 import { useStore } from 'vuex';
+import { LinkCategoryItemType } from '@/api'; 
+
+interface LinkCategoryObjectType {
+  [key:string]: LinkCategoryItemType[];
+}
 
 @Options({
   props: {
@@ -19,12 +24,19 @@ import { useStore } from 'vuex';
 })
 export default class Category extends Vue {
   private type: string;
+  private LinkCategoryObject: LinkCategoryObjectType[] = [];
+  private FormatData(linkCategoryList: LinkCategoryItemType[]) {
+    // for ()
+    // linkCategoryList.filter((item: LinkCategoryItemType)=>{
+    //   if (item.category_level)
 
+    // })
+    console.log(linkCategoryList);
+  }
   private CategoryIndex = setup(() => {
     const store = useStore();
-    store.dispatch('getCategoryList');
     const state = store.state;
-    console.log(state, 111);
+    this.FormatData(state.allLinkCategory);
     const searchValue = ref<string>(null);
     const changeCollapse = () => {
       console.log(111);
