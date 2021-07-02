@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
           title: '发现',
         },
         component: () =>
-          import(/* webpackChunkName: "CategoryIndex" */ '../views/category/Category.vue'),
+          import(/* webpackChunkName: "DiscoverIndex" */ '../views/discover/Index.vue'),
       },
       {
         path: '/aboutUs',

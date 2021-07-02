@@ -24,8 +24,8 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
       }
     });
   }
-  config.params.SPC_CDS = Cookies.get('SPC_CDS');
-  config.params.SPC_CDS_VER = Cookies.get('SPC_CDS_VER');
+  // config.params.SPC_CDS = Cookies.get('SPC_CDS');
+  // config.params.SPC_CDS_VER = Cookies.get('SPC_CDS_VER');
   // 删除 refreshTimestamp 参数
   if (config.params.refreshTimestamp) {
     delete config.params.refreshTimestamp;

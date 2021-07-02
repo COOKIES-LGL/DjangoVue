@@ -66,3 +66,8 @@ export const CollectionRequest = [
 // can i use
 // 使用A标签进行跳转
 // 图片制作,(gif表情, 任意格式图片)
+// 更改首页
+// 留意域名
+// 限制用户提交次数
+// gulp
+// ejs

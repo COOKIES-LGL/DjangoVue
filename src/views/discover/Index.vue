@@ -13,9 +13,9 @@
         <div class="category-title"><i class="el-icon-discount"></i>前端</div>
         <el-divider></el-divider>
         <!-- <el-tabs
-          v-model="CategoryIndex.activeName"
+          v-model="DiscoverIndex.activeName"
           type="card"
-          @tab-click="CategoryIndex.handleTabClick"
+          @tab-click="DiscoverIndex.handleTabClick"
         >
           <el-tab-pane
             v-for="(item, index) in SearchTabList"
@@ -43,10 +43,10 @@ import { useStore } from "vuex";
     CardPage,
   },
 })
-export default class Category extends Vue {
+export default class Discover extends Vue {
   private type: string;
 
-  private CategoryIndex = setup(() => {
+  private DiscoverIndex = setup(() => {
     const store = useStore();
     store.dispatch('getCategoryList');
     const state = store.state;
@@ -67,7 +67,7 @@ export default class Category extends Vue {
 </script>
 <style scoped lang="less">
 .block {
-  width: 92%;
+  width: 100%;
   margin: 20px auto;
   background: #ffffff;
 }
