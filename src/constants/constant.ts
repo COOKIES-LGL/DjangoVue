@@ -14,31 +14,19 @@ export const HeaderBarMenu = [
   { label: '关于我们', value: 'aboutUs' },
 ];
 
-export const SideBarMenu = [
-  { label: '前端', icon: 'el-icon-s-platform', name: 'frontend', children: [] },
-  {
-    label: '后端',
-    icon: 'el-icon-s-cooperation',
-    name: 'backend',
-    children: [],
-  },
-  {
-    label: '移动端',
-    icon: 'el-icon-mobile-phone',
-    name: 'mobile',
-    children: [],
-  },
-  { label: 'UI&设计', icon: 'el-icon-s-open', name: 'uiDesign', children: [] },
-  {
-    label: '其它',
-    icon: 'el-icon-s-grid',
-    name: '#',
-    children: [
-      { label: '域名服务器', icon: 'el-icon-cpu', name: 'domainServe' },
-      { label: '资源下载', icon: 'el-icon-download', name: 'downloadSource' },
-      { label: '生活常用', icon: 'el-icon-s-shop', name: 'dailyUse' },
-    ],
-  },
+export const SideBarMenuIcons: string[] = [
+  'el-icon-s-platform',
+  'el-icon-s-cooperation',
+  'el-icon-mobile-phone',
+  'el-icon-s-grid',
+  'el-icon-cpu',
+  'el-icon-download',
+  'el-icon-s-shop',
+  'el-icon-s-finance',
+  'el-icon-s-ticket',
+  'el-icon-upload',
+  'el-icon-s-help',
+  'el-icon-platform-eleme',
 ];
 
 export const CollectionRequest = [
@@ -46,7 +34,7 @@ export const CollectionRequest = [
   '2、本站收录条件主要说明：需是合法正规站点或内容。',
   '3、一般提交的申请在满足条件的前提下均会收录。',
   '4、不收录黄赌毒以及擦边类型网页（如棋牌、时时彩、av站、传销、代刷、代挂)。',
-  '5、不定时更新、如发现违规站站点一律下收录并拉入黑名单不再通过收录。'
+  '5、不定时更新、如发现违规站站点一律下收录并拉入黑名单不再通过收录。',
 ];
 
 // 轮播下拉组件

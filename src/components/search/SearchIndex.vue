@@ -44,6 +44,6 @@ export default class SearchIndex extends Vue {
   justify-content: center;
 }
 .searchInnerType {
-  height: 200px;
+  height: 160px;
 }
 </style>

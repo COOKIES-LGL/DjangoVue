@@ -1,19 +1,6 @@
 <template>
   <div class="category-index-box">
-    <div class="category-title"><i class="el-icon-discount"></i>前端</div>
-    <el-divider></el-divider>
-    <!-- <el-tabs
-      v-model="CategoryIndex.activeName"
-      type="card"
-      @tab-click="CategoryIndex.handleTabClick"
-    >
-      <el-tab-pane
-        v-for="(item, index) in SearchTabList"
-        :key="index"
-        :label="item.label"
-        :name="item.value"
-      ></el-tab-pane>
-    </el-tabs> -->
+    <div class="category-title"><i class="el-icon-discount"></i>视频</div>
     <CategoryCard />
   </div>
 </template>
@@ -30,10 +17,10 @@ import CategoryCard from './CategoryCard.vue';
     CategoryCard,
   },
 })
-export default class CategoryIndex extends Vue {
+export default class CategoryPanel extends Vue {
   private type: string;
 
-  private CategoryIndex = setup(() => {
+  private CategoryPanel = setup(() => {
     const searchValue = ref<string>(null);
     const changeCollapse = () => {
       console.log(111);
@@ -49,6 +36,7 @@ export default class CategoryIndex extends Vue {
 }
 </script>
 <style scoped lang="less">
+@import '../../styles/constants.less';
 .category-index-box {
   width: 96%;
   margin: 0 auto;

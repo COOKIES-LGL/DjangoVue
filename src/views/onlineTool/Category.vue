@@ -1,12 +1,12 @@
 <template>
   <div class="category-box">
-    <filter></filter>
+    <filter-tab></filter-tab>
   </div>
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import { ref, watch } from 'vue';
-import Filter from '@/components/Filter.vue';
+import FilterTab from '@/components/FilterTab.vue';
 import { useStore } from 'vuex';
 import { LinkCategoryItemType } from '@/api'; 
 
@@ -19,7 +19,7 @@ interface LinkCategoryObjectType {
     type: String,
   },
   components: {
-    Filter,
+    FilterTab,
   },
 })
 export default class Category extends Vue {

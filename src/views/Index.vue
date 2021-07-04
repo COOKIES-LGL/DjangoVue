@@ -1,19 +1,19 @@
 <template>
   <div class="index-content-box">
     <SearchIndex></SearchIndex>
-    <CategoryIndex/>
+    <category-panel></category-panel>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import SearchIndex from '@/components/search/SearchIndex.vue';
-import CategoryIndex from '@/components/category/CategoryIndex.vue';
+import CategoryPanel from '@/components/category/CategoryPanel.vue';
 
 @Options({
   components: {
     SearchIndex,
-    CategoryIndex,
+    CategoryPanel,
   },
 })
 export default class Index extends Vue {}

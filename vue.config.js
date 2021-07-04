@@ -9,6 +9,10 @@ module.exports = {
         '@icon': require('path').join(
           __dirname,
           './assets/svg'
+        ),
+        '@styles': require('path').join(
+          __dirname,
+          './styles'
         )
       }
     },

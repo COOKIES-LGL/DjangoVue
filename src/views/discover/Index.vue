@@ -1,31 +1,15 @@
 <template>
-  <CardPage>
+  <CardPage :sidebarList="categoryLv1" @changeSelect="DiscoverIndex.changeCategoryLv1">
     <template v-slot:content>
       <div class="block">
-        <span class="demonstration">每日优选推荐</span>
         <el-carousel trigger="click" height="150px">
           <el-carousel-item v-for="item in 4" :key="item">
-            <h3 class="small">{{ item }}</h3>
+            <h3 class="carousel-inner-box">{{ item }}</h3>
           </el-carousel-item>
         </el-carousel>
       </div>
-      <category></category>
-      <div class="category-box">
-        <div class="category-title"><i class="el-icon-discount"></i>前端</div>
-        <el-divider></el-divider>
-        <!-- <el-tabs
-          v-model="DiscoverIndex.activeName"
-          type="card"
-          @tab-click="DiscoverIndex.handleTabClick"
-        >
-          <el-tab-pane
-            v-for="(item, index) in SearchTabList"
-            :key="index"
-            :label="item.label"
-            :name="item.value"
-          ></el-tab-pane>
-        </el-tabs> -->
-      </div>
+      <div class="category-title"><i class="el-icon-discount"></i>{{ DiscoverIndex.currentCategoryLv1 }}</div>
+      <category :currentCategoryLv1="DiscoverIndex.currentCategoryLv1Id"></category>
       <!-- <el-empty description="暂无数据"></el-empty> -->
     </template>
   </CardPage>
@@ -36,6 +20,12 @@ import { ref, watch, onBeforeMount } from 'vue';
 import CardPage from '@/components/CardPage.vue';
 import { useStore } from 'vuex';
 import Category from './Category.vue';
+import { LinkCategoryItemType } from '@/api';
+import { SideBarMenuType } from '@/constants';
+
+interface LinkCategoryObjectType {
+  [key: string]: LinkCategoryItemType[];
+}
 
 @Options({
   props: {
@@ -44,55 +34,70 @@ import Category from './Category.vue';
   components: {
     CardPage,
     Category,
+
+  },
+  provide() {
+    return {
+      currentCategoryLv1Id: this.DiscoverIndex.currentCategoryLv1Id,
+    };
   },
 })
 export default class Discover extends Vue {
   private type: string;
+  private LinkCategoryObject: LinkCategoryObjectType[] = [];
+  private categoryLv1: LinkCategoryItemType[] = [];
+  private FormatData(linkCategoryList: LinkCategoryItemType[]) {
+    this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
+  }
+
   private DiscoverIndex = setup(async () => {
     const store = useStore();
     onBeforeMount(() => {
-      console.log(111111);
+      // 生命勾子
+      console.log('beforeMoubted');
     });
-    await store.dispatch('getCategoryList');
-    const searchValue = ref<string>(null);
-    const changeCollapse = () => {
-      console.log(111);
+    await store.dispatch('getCategoryList').then((res: LinkCategoryItemType[]) => {
+      this.FormatData(res);
+    });
+    let searchValue = ref<string>(null);
+    let currentCategoryLv1Id = ref<number>(this.categoryLv1[0].id);
+    let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
+
+    const changeCategoryLv1 = function(newValue: SideBarMenuType) {
+      console.log(newValue, 'newValue');
+      currentCategoryLv1.value = newValue.label;
+      currentCategoryLv1Id.value = newValue.id;
     };
     watch(this.$props, (newValue: any) => {
       console.log(newValue);
     });
     return {
       searchValue,
-      changeCollapse,
+      changeCategoryLv1,
+      currentCategoryLv1,
+      currentCategoryLv1Id,
     };
   });
 }
 </script>
 <style scoped lang="less">
 .block {
-  width: 100%;
-  margin: 20px auto;
+  width: 94%;
+  margin: 0px auto 20px;
   background: #ffffff;
-}
-.category-box {
-  background: red;
-  width: 92%;
-  margin: 0 auto;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .category-title {
-    font-size: 20px;
-    padding-left: 20px;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 15px;
+  .carousel-inner-box {
+    background: #eee;
+    height: 100%;
   }
+}
+.category-title {
+  font-size: 20px;
+  width: 94%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 15px;
 }
 </style>

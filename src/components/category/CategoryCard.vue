@@ -1,35 +1,62 @@
 <template>
-  <div class="category-card-box"></div>
+  <div class="category-card-box">
+    <div class="category-card-top">
+      <div class="icon">知</div>
+      <div class="title">知乎论坛</div>
+    </div>
+    <div class="desc">只是一个非常活跃的博客论坛系统,值得收藏</div>
+  </div>
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch } from 'vue';
+import { watch } from 'vue';
 
 @Options({
   props: {
-    type: String,
+    linkList: String,
   },
 })
 export default class CategoryCard extends Vue {
-  private type: string;
+  private linkList: string;
   private CategoryCard = setup(() => {
-    const searchValue = ref<string>(null);
-    const changeCollapse = () => {
-      console.log(111);
-    };
     watch(this.$props, (newValue: any) => {
       console.log(newValue);
     });
-    return {
-      searchValue,
-      changeCollapse,
-    };
+    return {};
   });
 }
 </script>
 <style scoped lang="less">
+@import '../../styles/constants.less';
 .category-card-box {
-  width: 120px;
-  height: 60px;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  background-origin: padding-box;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 2px solid @tab-background;
+  // box-shadow: -4px -4px 8px #eaedf6, 4px 4px 8px #d6d8e0;
+  .category-card-top {
+    margin: 10px 10px;
+    border-bottom: 2px solid @cell-background;
+    position: relative;
+    .icon {
+      position: absolute;
+      background: #ffffff;
+      top: -35px;
+      left: 0px;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 50%;
+      font-size: 30px;
+      border: 1px solid @tab-background;
+    }
+  }
+  .desc {
+    padding: 0px 10px 10px 10px;
+  }
 }
 </style>

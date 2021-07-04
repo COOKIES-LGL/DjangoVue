@@ -1,27 +1,48 @@
 <template>
   <div class="sidebar-box">
-    <SideBar></SideBar>
+    <SideBar @changeSelect="CardPage.changeSelect" :propsData="CardPage.sidebarList"></SideBar>
   </div>
   <div class="inner-container">
     <div class="index-content-box">
-      <SearchIndex type='inner'></SearchIndex>
+      <SearchIndex type="inner"></SearchIndex>
       <slot name="content"></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Options, Vue, setup } from 'vue-class-component';
 import SideBar from '@/components/SideBar.vue';
+import { reactive } from 'vue';
 import SearchIndex from '@/components/search/SearchIndex.vue';
+import { LinkCategoryItemType } from '@/api';
 
 @Options({
+  props: {
+    sidebarList: '',
+  },
+  emits: {
+    changeSelect: '', //不写会报警告
+  },
   components: {
     SideBar,
     SearchIndex,
   },
 })
-export default class CardPage extends Vue {}
+export default class CardPage extends Vue {
+  private sidebarList: LinkCategoryItemType[];
+  
+  private CardPage = setup(() => {
+    const sidebarList = reactive(this.sidebarList);
+    const changeSelect = (targetItem: LinkCategoryItemType) => {
+      this.$emit('changeSelect', targetItem);
+    }
+    return {
+      sidebarList,
+      changeSelect
+    };
+  });
+}
 </script>
 <style scoped lang="less">
 .sidebar-box {

@@ -6,14 +6,14 @@ export interface HeaderBarMenuType {
 export interface SideBarMenuItemType {
   label: string;
   icon: string;
-  name: string;
+  id: number;
 }
 
 export interface SideBarMenuType {
   label: string;
   icon: string;
-  name: string;
-  children: SideBarMenuItemType[];
+  id: number;
+  children?: SideBarMenuItemType[];
 }
 
 export interface SearchTabListType {

@@ -1,29 +1,34 @@
 <template>
-  <div class="category-box">
-    <filter></filter>
+  <div class="category-filter-box">
+    <filter-tab></filter-tab>
+    <div class="link-content-box">
+      <category-panel></category-panel>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import { ref, watch } from 'vue';
-import Filter from '@/components/Filter.vue';
+import FilterTab from '@/components/FilterTab.vue';
 import { useStore } from 'vuex';
-import { LinkCategoryItemType } from '@/api'; 
+import { LinkCategoryItemType } from '@/api';
+import CategoryPanel from '@/components/category/CategoryPanel.vue';
 
 interface LinkCategoryObjectType {
-  [key:string]: LinkCategoryItemType[];
+  [key: string]: LinkCategoryItemType[];
 }
 
 @Options({
   props: {
-    type: String,
+    currentCategoryLv1: Number,
   },
   components: {
-    Filter,
+    FilterTab,
+    CategoryPanel,
   },
 })
 export default class Category extends Vue {
-  private type: string;
+  private categoryLv1: string;
   private LinkCategoryObject: LinkCategoryObjectType[] = [];
   private FormatData(linkCategoryList: LinkCategoryItemType[]) {
     // for ()
@@ -31,34 +36,45 @@ export default class Category extends Vue {
     //   if (item.category_level)
 
     // })
-    console.log(linkCategoryList);
+    console.log(linkCategoryList, 111);
   }
   private CategoryIndex = setup(() => {
     const store = useStore();
     const state = store.state;
     this.FormatData(state.allLinkCategory);
+    const currentCategoryLv1 = ref<number>(1);
     const searchValue = ref<string>(null);
-    const changeCollapse = () => {
-      console.log(111);
-    };
-    watch(this.$props, (newValue: any) => {
-      console.log(newValue);
-    });
+    watch(
+      this.$props,
+      (newValue: any) => {
+        console.log(newValue, 'new111');
+        currentCategoryLv1.value = newValue.currentCategoryLv1;
+      },
+      { immediate: true }
+    );
     return {
       searchValue,
-      changeCollapse,
     };
   });
 }
 </script>
 <style scoped lang="less">
-.category-box {
-  width: 92%;
+.category-filter-box {
+  width: 94%;
   margin: 0 auto;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .link-content-box {
+    width: 94%;
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

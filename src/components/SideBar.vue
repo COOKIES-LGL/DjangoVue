@@ -1,25 +1,26 @@
 <template>
   <div class="sidebar-container">
-    <div class="logo-box" @click="SideBar.changeCollapse">归零@you</div>
+    <div class="logo-box" @click="SideBar.changeCollapse">To Be Stronger</div>
     <el-menu
       default-active="0"
       class="el-menu-vertical-demo"
       :collapse="SideBar.isCollapse"
       :collapse-transition="true"
+      @select="SideBar.elMenuChange"
     >
-      <template v-for="(item, index) in SideBarMenu" :key="index">
-        <el-menu-item :index="item.name" class="el-menu-item-class" v-if="item.children.length === 0">
+      <template v-for="(item, index) in SideBar.sideBarMenu" :key="index">
+        <el-menu-item :index="item.id.toString()" class="el-menu-item-class" v-if="!item.children">
           <i :class="item.icon"></i>
           <template #title>{{ item.label }}</template>
         </el-menu-item>
-        <el-submenu :index="item.name" v-else>
+        <el-submenu :index="item.id.toString()" v-else>
           <template #title>
             <div class="el-menu-item-class">
               <i :class="item.icon"></i> <span>{{ item.label }}</span>
             </div>
           </template>
           <el-menu-item-group v-for="(child, subIndex) in item.children" :key="subIndex">
-            <el-menu-item class="el-menu-item-class" :index="child.name"
+            <el-menu-item class="el-menu-item-class" :index="child.id.toString()"
               ><i :class="child.icon"></i>{{ child.label }}</el-menu-item
             >
           </el-menu-item-group>
@@ -31,25 +32,46 @@
 
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref } from 'vue';
-import { SideBarMenu, SideBarMenuType } from '@/constants';
+import { ref, reactive } from 'vue';
+import { SideBarMenuIcons, SideBarMenuType } from '@/constants';
+import { LinkCategoryItemType } from '@/api';
 
 @Options({
   props: {
-    msg: String,
+    propsData: '',
   },
+  emits: {
+    changeSelect: ''
+  }
 })
 export default class SideBar extends Vue {
-  private SideBarMenu: SideBarMenuType[] = SideBarMenu;
+  private propsData: LinkCategoryItemType[];
+  private sideBarMenuIcons: string[] = SideBarMenuIcons;
+ 
   private SideBar = setup(() => {
+    const sideBarMenu: SideBarMenuType[] = reactive([]);
+    this.propsData.forEach((item: LinkCategoryItemType, index: number) => {
+      const sideBaritem: SideBarMenuType = {
+        label: item.category_name,
+        id: item.id,
+        icon: this.sideBarMenuIcons[index],
+      };
+      sideBarMenu.push(sideBaritem);
+    });
+
     const isCollapse = ref(false);
     const changeCollapse = () => {
-      console.log(111);
-      // isCollapse.value = !isCollapse.value;
+      isCollapse.value = !isCollapse.value;
+    };
+    const elMenuChange = (index: number) => {
+      const targetItem = sideBarMenu.find((item: SideBarMenuType) => item.id == index);
+      this.$emit('changeSelect', targetItem);
     };
     return {
       isCollapse,
+      sideBarMenu,
       changeCollapse,
+      elMenuChange,
     };
   });
 }
@@ -65,10 +87,10 @@ export default class SideBar extends Vue {
   .logo-box {
     height: 72px;
     line-height: 72px;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
     width: auto;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 220px;
