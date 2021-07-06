@@ -34,7 +34,6 @@ interface LinkCategoryObjectType {
   components: {
     CardPage,
     Category,
-
   },
   provide() {
     return {

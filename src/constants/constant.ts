@@ -69,3 +69,8 @@ export const CollectionRequest = [
 // fs-extra
 // 在console 中输入内容
 // https://tool.lu/c/geek/
+// fest.js
+// Django添加日志
+// 首页展示网站收录
+// 小码短链接
+// 用户唯一标识统计 ip地址获取,需单独拉去一个App应用

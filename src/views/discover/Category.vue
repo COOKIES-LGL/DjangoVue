@@ -1,6 +1,6 @@
 <template>
   <div class="category-filter-box">
-    <filter-tab></filter-tab>
+    <filter-tab @filterChange="CategoryIndex.filterChange" :currentCategoryLv1Id="currentCategoryLv1"></filter-tab>
     <div class="link-content-box">
       <category-panel></category-panel>
     </div>
@@ -38,12 +38,16 @@ export default class Category extends Vue {
     // })
     console.log(linkCategoryList, 111);
   }
+
   private CategoryIndex = setup(() => {
     const store = useStore();
     const state = store.state;
     this.FormatData(state.allLinkCategory);
     const currentCategoryLv1 = ref<number>(1);
     const searchValue = ref<string>(null);
+    const filterChange = (filterObject)=>{
+      console.log(filterObject, 'bject');
+    }
     watch(
       this.$props,
       (newValue: any) => {
@@ -54,6 +58,7 @@ export default class Category extends Vue {
     );
     return {
       searchValue,
+      filterChange,
     };
   });
 }
