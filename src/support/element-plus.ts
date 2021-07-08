@@ -18,6 +18,11 @@ import {
   ElCarousel,
   ElCard,
   ElCarouselItem,
+  ElFormItem,
+  ElSelect,
+  ElOption,
+  ElSwitch,
+  ElForm,
 } from 'element-plus';
 
 // 组件写在components中
@@ -39,6 +44,11 @@ export const components: any[] = [
   ElCarousel,
   ElCard,
   ElCarouselItem,
+  ElForm,
+  ElFormItem,
+  ElSelect,
+  ElOption,
+  ElSwitch,
 ];
 // 插件写在plugins中
 export const plugins: any[] = [ElMessageBox, ElLoading];

@@ -1,9 +1,5 @@
 <template>
-  <CardPage>
-    <template v-slot:content>
-      <a href="https://COOKIES-LGL.github.io">归零@you</a>
-    </template>
-  </CardPage>
+  <a href="https://COOKIES-LGL.github.io">归零@you</a>
 </template>
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';

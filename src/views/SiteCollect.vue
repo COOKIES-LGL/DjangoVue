@@ -1,5 +1,5 @@
 <template>
-  <CardPage>
+  <CardPage :sidebarList="categoryLv1" @changeSelect="SiteCollectIndex.changeCategoryLv1">
     <template v-slot:content>
       <div class="label-mesg-box">
         <div class="label-left-box">
@@ -25,25 +25,59 @@
           </div>
         </el-card>
       </div>
+      <div class="category-title"><i class="el-icon-discount"></i>{{ SiteCollectIndex.currentCategoryLv1 }}</div>
       <div class="form-box">
-        推荐资源
+        <form-modal :categoryLv1Id="SiteCollectIndex.currentCategoryLv1Id"></form-modal>
       </div>
     </template>
   </CardPage>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Options, Vue, setup } from 'vue-class-component';
 import CardPage from '@/components/CardPage.vue';
+import { watch, ref } from 'vue';
+import { useStore } from 'vuex';
 import { CollectionRequest } from '@/constants';
+import { LinkCategoryItemType } from '@/api';
+import { SideBarMenuType } from '@/constants';
+import FormModal from '@/components/FormModal.vue';
 
 @Options({
   components: {
     CardPage,
+    FormModal,
   },
 })
 export default class SiteCollect extends Vue {
   private CollectionRequest: string[] = CollectionRequest;
+  private categoryLv1: LinkCategoryItemType[] = [];
+  private FormatData(linkCategoryList: LinkCategoryItemType[]) {
+    this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
+  }
+
+  private SiteCollectIndex = setup(async () => {
+    const store = useStore();
+    await store.dispatch('getCategoryList').then((res: LinkCategoryItemType[]) => {
+      this.FormatData(res);
+    });
+    let currentCategoryLv1Id = ref<number>(this.categoryLv1[0].id);
+    let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
+    const changeCategoryLv1 = function(newValue: SideBarMenuType) {
+      currentCategoryLv1.value = newValue.label;
+      currentCategoryLv1Id.value = newValue.id;
+    };
+
+    watch(this.$props, (newValue: any) => {
+      console.log(newValue);
+    });
+    
+    return {
+      changeCategoryLv1,
+      currentCategoryLv1,
+      currentCategoryLv1Id,
+    };
+  });
 }
 </script>
 <style scoped lang="less">
@@ -63,6 +97,20 @@ export default class SiteCollect extends Vue {
     }
   }
 }
+.category-title {
+  font-size: 20px;
+  width: 94%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 15px;
+}
 .form-box {
+  padding: 20px;
+  .el-form-box {
+    width: 400px;
+  }
 }
 </style>

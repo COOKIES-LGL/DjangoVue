@@ -3,6 +3,7 @@
     <filter-tab @filterChange="CategoryIndex.filterChange" :currentCategoryLv1Id="currentCategoryLv1"></filter-tab>
     <div class="link-content-box">
       <category-panel></category-panel>
+      <category-panel></category-panel>
     </div>
   </div>
 </template>
@@ -73,7 +74,7 @@ export default class Category extends Vue {
   justify-content: center;
   align-items: center;
   .link-content-box {
-    width: 94%;
+    width: 100%;
     margin: 0 auto;
     height: auto;
     display: flex;

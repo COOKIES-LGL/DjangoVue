@@ -1,7 +1,7 @@
 <template>
   <div class="category-card-box">
     <div class="category-card-top">
-      <div class="icon">知</div>
+      <div class="icon">+</div>
       <div class="title">知乎论坛</div>
     </div>
     <div class="desc">只是一个非常活跃的博客论坛系统,值得收藏</div>
@@ -16,7 +16,7 @@ import { watch } from 'vue';
     linkList: String,
   },
 })
-export default class CategoryCard extends Vue {
+export default class AddCard extends Vue {
   private linkList: string;
   private CategoryCard = setup(() => {
     watch(this.$props, (newValue: any) => {

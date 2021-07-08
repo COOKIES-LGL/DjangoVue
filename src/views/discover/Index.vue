@@ -23,10 +23,6 @@ import Category from './Category.vue';
 import { LinkCategoryItemType } from '@/api';
 import { SideBarMenuType } from '@/constants';
 
-interface LinkCategoryObjectType {
-  [key: string]: LinkCategoryItemType[];
-}
-
 @Options({
   props: {
     type: String,
@@ -43,7 +39,6 @@ interface LinkCategoryObjectType {
 })
 export default class Discover extends Vue {
   private type: string;
-  private LinkCategoryObject: LinkCategoryObjectType[] = [];
   private categoryLv1: LinkCategoryItemType[] = [];
   private FormatData(linkCategoryList: LinkCategoryItemType[]) {
     this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
@@ -58,7 +53,6 @@ export default class Discover extends Vue {
     await store.dispatch('getCategoryList').then((res: LinkCategoryItemType[]) => {
       this.FormatData(res);
     });
-    let searchValue = ref<string>(null);
     let currentCategoryLv1Id = ref<number>(this.categoryLv1[0].id);
     let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
 
@@ -71,7 +65,6 @@ export default class Discover extends Vue {
       console.log(newValue);
     });
     return {
-      searchValue,
       changeCategoryLv1,
       currentCategoryLv1,
       currentCategoryLv1Id,
