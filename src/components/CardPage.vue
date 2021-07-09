@@ -4,7 +4,7 @@
   </div>
   <div class="inner-container">
     <div class="index-content-box">
-      <SearchIndex type="inner"></SearchIndex>
+      <SearchIndex type="inner" v-if="!hideSearch" ></SearchIndex>
       <slot name="content"></slot>
     </div>
   </div>
@@ -20,6 +20,7 @@ import { LinkCategoryItemType } from '@/api';
 @Options({
   props: {
     sidebarList: '',
+    hideSearch: Boolean,
   },
   emits: {
     changeSelect: '', //不写会报警告
@@ -31,7 +32,7 @@ import { LinkCategoryItemType } from '@/api';
 })
 export default class CardPage extends Vue {
   private sidebarList: LinkCategoryItemType[];
-  
+  private hideSearch: boolean;
   private CardPage = setup(() => {
     const sidebarList = reactive(this.sidebarList);
     const changeSelect = (targetItem: LinkCategoryItemType) => {

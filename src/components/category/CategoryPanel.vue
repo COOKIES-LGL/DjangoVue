@@ -59,6 +59,7 @@ export default class CategoryPanel extends Vue {
     flex-direction: row;
     align-items: center;
     background: #ffffff;
+    border-bottom: 2px solid @infomation3;
     border-radius: 15px;
   }
   .category-card-container {
@@ -66,10 +67,10 @@ export default class CategoryPanel extends Vue {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0px 20px 20px;
+    justify-content: flex-start;
+    padding: 10px 20px 20px;
     .category-card-box{
-      margin-top: 30px;
+      margin: 30px 10px 0px 10px;
     }
   }
 }

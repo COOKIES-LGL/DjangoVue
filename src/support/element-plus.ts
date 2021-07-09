@@ -23,6 +23,7 @@ import {
   ElOption,
   ElSwitch,
   ElForm,
+  ElTooltip
 } from 'element-plus';
 
 // 组件写在components中
@@ -49,6 +50,7 @@ export const components: any[] = [
   ElSelect,
   ElOption,
   ElSwitch,
+  ElTooltip,
 ];
 // 插件写在plugins中
 export const plugins: any[] = [ElMessageBox, ElLoading];

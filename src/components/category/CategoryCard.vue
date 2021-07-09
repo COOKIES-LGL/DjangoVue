@@ -3,8 +3,17 @@
     <div class="category-card-top">
       <div class="icon">知</div>
       <div class="title">知乎论坛</div>
+      <div class="vpn-icon" v-if="1">VPN</div>
     </div>
-    <div class="desc">只是一个非常活跃的博客论坛系统,值得收藏</div>
+    <el-tooltip
+      :append-to-body="false"
+      placement="top"
+      :show-after="300"
+      effect="light"
+      content="只是一个非常活跃的博客论坛系统,值得收藏"
+    >
+      <div class="desc">只是一个非常活跃的博客论坛系统,值得收藏</div>
+    </el-tooltip>
   </div>
 </template>
 <script lang="ts">
@@ -37,11 +46,31 @@ export default class CategoryCard extends Vue {
   border-radius: 10px;
   background: #ffffff;
   border: 2px solid @tab-background;
+  transform: translate(0px);
+  transition: transform 1s;
+  &:hover {
+    transform: translate(-10px);
+  }
+  /deep/ .el-popper {
+    min-height: 32px;
+    line-height: 16px;
+    max-width: 240px;
+  }
   // box-shadow: -4px -4px 8px #eaedf6, 4px 4px 8px #d6d8e0;
   .category-card-top {
     margin: 5px 10px;
     border-bottom: 2px solid @cell-background;
     position: relative;
+    display: flex;
+    .title {
+      width: 90%;
+    }
+    .vpn-icon {
+      width: 15%;
+      font-size: 12px;
+      font-weight: bold;
+      color: @infomation3;
+    }
     .icon {
       position: absolute;
       background: #ffffff;

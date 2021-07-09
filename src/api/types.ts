@@ -7,5 +7,6 @@ export interface LinkCategoryItemType {
   id: number;
   category_name: string;
   category_level: number;
-  category_parent: number;  
+  category_parent: number; 
+  order_id: number; 
 }
