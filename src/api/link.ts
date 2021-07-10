@@ -1,16 +1,24 @@
 import { api } from './base';
-import { AxiosResponse } from 'axios'; 
+import { AxiosResponse } from 'axios';
+import { GetLinkListParams, GetLinkListForOrderParams, LinkItemType } from './types';
 
-export const getLinkList = async (): Promise<AxiosResponse> => {
-  const res: AxiosResponse = await api.get('/getAllLink/');
+export const getLinkList = async (params: GetLinkListParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse<LinkItemType> = await api.get('/getLinksById/', {
+    params,
+  });
   return res;
 };
 
-export const getSpecialLinkList = async (id: number): Promise<AxiosResponse> => {
+export const getLinkListForOrder = async (params: GetLinkListForOrderParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse<LinkItemType> = await api.get('/getLinksByIds/', {
+    params,
+  });
+  return res;
+};
+
+export const getSpecialLinkList = async (params: GetLinkListParams): Promise<AxiosResponse> => {
   const res: AxiosResponse = await api.get('/', {
-    params: {
-      collection_id: id,
-    },
+    params,
   });
   return res;
 };

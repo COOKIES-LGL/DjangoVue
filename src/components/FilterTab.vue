@@ -2,7 +2,7 @@
   <div class="filter-box">
     <el-tabs type="card" v-model="FilterIndex.filterObject.category_lv1" @tab-click="FilterIndex.handleTab1Click">
       <el-tab-pane
-        v-for="(item, index) in FilterIndex.category_lv1.categoryLv1"
+        v-for="(item, index) in FilterIndex.category.categoryLv1"
         :key="index"
         :label="item.category_name"
         :name="item.id.toString()"
@@ -10,14 +10,14 @@
         <div class="inner-content">
           <el-tabs v-model="FilterIndex.filterObject.category_lv2" @tab-click="FilterIndex.handleTab2Click">
             <el-tab-pane
-              v-for="(item, index) in FilterIndex.category_lv2.categoryLv2"
+              v-for="(item, index) in FilterIndex.category.categoryLv2"
               :key="index"
               :label="item.category_name"
               :name="item.id.toString()"
             >
               <el-tabs v-model="FilterIndex.filterObject.category_lv3" @tab-click="FilterIndex.handleTab3Click">
                 <el-tab-pane
-                  v-for="(item, index) in FilterIndex.category_lv3.categoryLv3"
+                  v-for="(item, index) in FilterIndex.category.categoryLv3"
                   :key="index"
                   :label="item.category_name"
                   :name="item.id.toString()"
@@ -52,16 +52,12 @@ interface CategoryLv2Array {
 export default class FilterTab extends Vue {
   private FilterIndex = setup(() => {
     // const currentCategoryLv1Id = ref<number>(inject('currentCategoryLv1Id'));可以获取到无法弄到响应式,后续TODO
-
-    let category_lv1: CategoryLv2Array = reactive({
+    let category: CategoryLv2Array = reactive({
       categoryLv1: [],
-    });
-    let category_lv2: CategoryLv2Array = reactive({
       categoryLv2: [],
-    });
-    let category_lv3: CategoryLv2Array = reactive({
       categoryLv3: [],
     });
+
     const filterObject = reactive({
       category_lv1: '1',
       category_lv2: '1',
@@ -73,25 +69,25 @@ export default class FilterTab extends Vue {
     const allLinkCategory = state.allLinkCategory;
 
     const formatData = (currentid: number) => {
-      category_lv1.categoryLv1 = allLinkCategory.filter((item: LinkCategoryItemType) => item.category_parent == currentid);
-      filterObject.category_lv1 = category_lv1.categoryLv1[0].id.toString();
-      if (category_lv1.categoryLv1 && category_lv1.categoryLv1.length > 0) {
-        category_lv2.categoryLv2 = allLinkCategory.filter(
-          (item: LinkCategoryItemType) => item.category_parent == category_lv1.categoryLv1[0].id
+      category.categoryLv1 = allLinkCategory.filter((item: LinkCategoryItemType) => item.category_parent == currentid);
+      filterObject.category_lv1 = category.categoryLv1[0].id.toString();
+      if (category.categoryLv1 && category.categoryLv1.length > 0) {
+        category.categoryLv2 = allLinkCategory.filter(
+          (item: LinkCategoryItemType) => item.category_parent == category.categoryLv1[0].id
         );
-        filterObject.category_lv2 = category_lv2.categoryLv2[0] && category_lv2.categoryLv2[0].id.toString();
+        filterObject.category_lv2 = category.categoryLv2[0] && category.categoryLv2[0].id.toString();
       }
-      if (category_lv2.categoryLv2 && category_lv2.categoryLv2.length > 0) {
-        category_lv3.categoryLv3 = allLinkCategory.filter(
-          (item: LinkCategoryItemType) => item.category_parent == category_lv2.categoryLv2[0].id
+      if (category.categoryLv2 && category.categoryLv2.length > 0) {
+        category.categoryLv3 = allLinkCategory.filter(
+          (item: LinkCategoryItemType) => item.category_parent == category.categoryLv2[0].id
         );
-        filterObject.category_lv3 = category_lv3.categoryLv3[0] && category_lv3.categoryLv3[0].id.toString();
+        filterObject.category_lv3 = category.categoryLv3[0] && category.categoryLv3[0].id.toString();
       }
     };
     watch(
       this.$props,
       (newValue: any) => {
-        console.log(newValue, 'currn');
+        console.log(newValue, 'current');
         currentCategoryLv1Id.value = newValue.currentCategoryLv1Id;
         formatData(currentCategoryLv1Id.value);
       },
@@ -101,23 +97,23 @@ export default class FilterTab extends Vue {
     watch(
       filterObject,
       (newValue: any) => {
-        this.$emit('filterChange', newValue);
+        this.$emit('filterChange', newValue, category.categoryLv3);
       },
       { immediate: true }
     );
 
     const handleTab1Click = (item: any) => {
       const currentTab1Id = item.props.name;
-      category_lv2.categoryLv2 = allLinkCategory.filter((item: LinkCategoryItemType) => {
+      category.categoryLv2 = allLinkCategory.filter((item: LinkCategoryItemType) => {
         return item.category_parent == Number(currentTab1Id);
       });
-      if (category_lv2.categoryLv2 && category_lv2.categoryLv2.length > 0) {
-        filterObject.category_lv2 = category_lv2.categoryLv2[0].id.toString();
-        category_lv3.categoryLv3 = allLinkCategory.filter(
-          (item: LinkCategoryItemType) => item.category_parent == category_lv2.categoryLv2[0].id
+      if (category.categoryLv2 && category.categoryLv2.length > 0) {
+        filterObject.category_lv2 = category.categoryLv2[0].id.toString();
+        category.categoryLv3 = allLinkCategory.filter(
+          (item: LinkCategoryItemType) => item.category_parent == category.categoryLv2[0].id
         );
-        if (category_lv3.categoryLv3 && category_lv3.categoryLv3.length > 0) {
-          filterObject.category_lv3 = category_lv3.categoryLv3[0].id.toString();
+        if (category.categoryLv3 && category.categoryLv3.length > 0) {
+          filterObject.category_lv3 = category.categoryLv3[0].id.toString();
         }
       }
       // console.log(category_lv2.categoryLv2);
@@ -125,11 +121,11 @@ export default class FilterTab extends Vue {
 
     const handleTab2Click = (item: any) => {
       const currentTab2Id = item.props.name;
-      category_lv3.categoryLv3 = allLinkCategory.filter((item: LinkCategoryItemType) => {
+      category.categoryLv3 = allLinkCategory.filter((item: LinkCategoryItemType) => {
         return item.category_parent == Number(currentTab2Id);
       });
-      if (category_lv3.categoryLv3 && category_lv3.categoryLv3.length > 0) {
-        filterObject.category_lv3 = category_lv3.categoryLv3[0].id.toString();
+      if (category.categoryLv3 && category.categoryLv3.length > 0) {
+        filterObject.category_lv3 = category.categoryLv3[0].id.toString();
       }
       filterObject.category_lv2 = currentTab2Id;
       // console.log(category_lv3.categoryLv3);
@@ -146,9 +142,7 @@ export default class FilterTab extends Vue {
       handleTab1Click,
       handleTab2Click,
       handleTab3Click,
-      category_lv1,
-      category_lv2,
-      category_lv3,
+      category,
     };
   });
 }

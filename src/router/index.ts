@@ -103,6 +103,9 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title.toString();
   }
+  if (from.name !== to.name) {
+    window.scrollTo(0, 0);
+  }
   next();
 });
 

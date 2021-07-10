@@ -2,17 +2,20 @@
   <div class="category-filter-box">
     <filter-tab @filterChange="CategoryIndex.filterChange" :currentCategoryLv1Id="currentCategoryLv1"></filter-tab>
     <div class="link-content-box">
-      <category-panel></category-panel>
-      <category-panel></category-panel>
+      <CategoryPanel
+        v-for="(item, index) in CategoryIndex.reactiveData.categoryPanelData"
+        :key="index"
+        :dataList="item"
+      ></CategoryPanel>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch } from 'vue';
+import { ref, watch, reactive } from 'vue';
+import { useRouter } from 'vue-router';
 import FilterTab from '@/components/FilterTab.vue';
-import { useStore } from 'vuex';
-import { LinkCategoryItemType } from '@/api';
+import { LinkCategoryItemType, getLinkList, GetLinkListParams, LinkItemType } from '@/api';
 import CategoryPanel from '@/components/category/CategoryPanel.vue';
 
 interface LinkCategoryObjectType {
@@ -31,35 +34,55 @@ interface LinkCategoryObjectType {
 export default class Category extends Vue {
   private categoryLv1: string;
   private LinkCategoryObject: LinkCategoryObjectType[] = [];
-  private FormatData(linkCategoryList: LinkCategoryItemType[]) {
-    // for ()
-    // linkCategoryList.filter((item: LinkCategoryItemType)=>{
-    //   if (item.category_level)
-
-    // })
-    console.log(linkCategoryList, 111);
-  }
 
   private CategoryIndex = setup(() => {
-    const store = useStore();
-    const state = store.state;
-    this.FormatData(state.allLinkCategory);
     const currentCategoryLv1 = ref<number>(1);
-    const searchValue = ref<string>(null);
-    const filterChange = (filterObject)=>{
-      console.log(filterObject, 'bject');
-    }
+    const router = useRouter();
+    let reactiveData = reactive({
+      categoryPanelData: {},
+    });
+
+    const filterChange = (filterObject: any, category: LinkCategoryItemType[]) => {
+      console.log(filterObject, 'bject', category);
+      router.push({
+        // 增加router参数
+        path: '/discover',
+        query: {
+          lv1: filterObject.category_lv2,
+          lv2: filterObject.category_lv3,
+        },
+      });
+      const params: GetLinkListParams = {
+        grandparent_id: filterObject.category_lv2,
+      };
+      getLinkList(params).then(res => {
+        const response = res.data;
+        const renderList = [];
+        category.forEach((item: LinkCategoryItemType) => {
+          const panelLinkList = response.filter((link: LinkItemType) => {
+            return item.id === link.parent_id;
+          });
+          const tempObject = {
+            id: item.id,
+            categoryName: item.category_name,
+            linkList: panelLinkList,
+          };
+          renderList.push(tempObject);
+        });
+        reactiveData.categoryPanelData = renderList;
+        console.log(reactiveData.categoryPanelData);
+      });
+    };
     watch(
       this.$props,
       (newValue: any) => {
-        console.log(newValue, 'new111');
         currentCategoryLv1.value = newValue.currentCategoryLv1;
       },
       { immediate: true }
     );
     return {
-      searchValue,
       filterChange,
+      reactiveData,
     };
   });
 }

@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import { watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 @Options({
   props: {
@@ -27,14 +27,21 @@ export default class AddCard extends Vue {
       console.log(newValue);
     });
     const router = useRouter();
+    const route = useRoute();
     const toAddModal = () => {
-      router.push({
-        path: '/siteCollect',
-        query: {
-          lv1: 1,
-          lv2: 2
-        }
-      })
+      if (route.query) {
+        router.push({
+          path: '/siteCollect',
+          query: {
+            lv1: route.query.lv1,
+            lv2: route.query.lv2,
+          },
+        });
+      } else {
+        router.push({
+          path: '/siteCollect',
+        });
+      }
     };
     return {
       toAddModal,
@@ -45,7 +52,7 @@ export default class AddCard extends Vue {
 <style scoped lang="less">
 @import '~@/styles/constants.less';
 .category-card-box {
-  width: 240px;
+  width: 250px;
   height: 90px;
   display: flex;
   flex-direction: column;
@@ -54,6 +61,10 @@ export default class AddCard extends Vue {
   background: #ffffff;
   border: 2px solid @tab-background;
   cursor: pointer;
+  transition: transform 1s;
+  &:hover {
+    transform: translateY(-10px);
+  }
   // box-shadow: -4px -4px 8px #eaedf6, 4px 4px 8px #d6d8e0;
   .category-card-top {
     margin: 5px 10px;

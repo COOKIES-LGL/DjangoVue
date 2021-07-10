@@ -1,8 +1,8 @@
 <template>
   <div class="category-index-box">
-    <div class="category-title"><i class="el-icon-discount"></i>视频</div>
+    <div class="category-title"><i class="el-icon-discount"></i>{{CategoryPanel.LinkItemList.categoryName}}</div>
     <div class="category-card-container">
-      <CategoryCard v-for="item in 10" :key="item" />
+      <CategoryCard v-for="(item, index) in CategoryPanel.LinkItemList.linkList" :key="index" :linkItem="item" />
       <add-card />
     </div>
   </div>
@@ -12,30 +12,31 @@ import { Options, Vue, setup } from 'vue-class-component';
 import { ref, watch } from 'vue';
 import CategoryCard from './CategoryCard.vue';
 import AddCard from './AddCard.vue';
+import { LinkItemType } from '@/api';
 
 @Options({
   props: {
-    type: String,
+    dataList: Object,
   },
   components: {
     CategoryCard,
-    AddCard
+    AddCard,
   },
 })
 export default class CategoryPanel extends Vue {
-  private type: string;
+  private dataList: LinkItemType[];
 
   private CategoryPanel = setup(() => {
-    const searchValue = ref<string>(null);
-    const changeCollapse = () => {
-      console.log(111);
-    };
-    watch(this.$props, (newValue: any) => {
-      console.log(newValue);
-    });
+    let LinkItemList = ref<LinkItemType[]>(this.dataList);
+    watch(
+      this.$props,
+      (newValue: any) => {
+        LinkItemList.value = newValue.dataList;
+      },
+      { immediate: true }
+    );
     return {
-      searchValue,
-      changeCollapse,
+      LinkItemList,
     };
   });
 }
@@ -43,7 +44,7 @@ export default class CategoryPanel extends Vue {
 <style scoped lang="less">
 @import '../../styles/constants.less';
 .category-index-box {
-  width: 96%;
+  width: 98%;
   margin: 0 auto;
   height: auto;
   display: flex;
@@ -68,8 +69,8 @@ export default class CategoryPanel extends Vue {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding: 10px 20px 20px;
-    .category-card-box{
+    padding: 10px 10px 20px;
+    .category-card-box {
       margin: 30px 10px 0px 10px;
     }
   }
