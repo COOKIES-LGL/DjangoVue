@@ -82,7 +82,7 @@ export const SearchTabList = [
       },
       {
         label: 'Npm',
-        holdplace: 'Search',
+        holdplace: 'Search In Npm',
         url: 'https://www.npmjs.com/search?q=',
       },
       {

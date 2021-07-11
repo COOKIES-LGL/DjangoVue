@@ -1,8 +1,8 @@
 <template>
-  <div class="category-card-box">
+  <div class="category-card-box" @click="CategoryCard.linktoUrl">
     <div class="category-card-top">
       <div class="icon">{{ CategoryCard.iconFromTitle }}</div>
-      <div class="title">{{ CategoryCard.linkItem.link_title }}</div>
+      <div class="title" v-line-clamp="2">{{ CategoryCard.linkItem.link_title }}</div>
       <div class="vpn-icon" v-if="CategoryCard.linkItem.link_need_vpn">VPN</div>
     </div>
     <el-tooltip
@@ -12,7 +12,7 @@
       effect="light"
       :content="CategoryCard.linkItem.link_desc"
     >
-      <div class="desc">{{ CategoryCard.linkItem.link_desc }}</div>
+      <div class="desc" v-line-clamp="2">{{ CategoryCard.linkItem.link_desc }}</div>
     </el-tooltip>
   </div>
 </template>
@@ -33,9 +33,13 @@ export default class CategoryCard extends Vue {
     const linkItem = ref<LinkItemType>(this.linkItem);
     // console.log(linkItem.value);
     const iconFromTitle: string = linkItem.value.link_title.slice(0, 1);
+    const linktoUrl = () => {
+      window.open(linkItem.value.link_url)
+    }
     return {
       iconFromTitle,
       linkItem,
+      linktoUrl,
     };
   });
 }
@@ -46,6 +50,7 @@ export default class CategoryCard extends Vue {
   width: 250px;
   height: 90px;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   background-origin: padding-box;
   border-radius: 10px;
@@ -84,7 +89,7 @@ export default class CategoryCard extends Vue {
     .icon {
       position: absolute;
       background: #ffffff;
-      top: -30px;
+      top: -28px;
       left: 0px;
       width: 45px;
       height: 45px;
@@ -97,11 +102,11 @@ export default class CategoryCard extends Vue {
   }
   .desc {
     display: flex;
-    height: 64px;
+    font-size: 12px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
     line-height: 24px;
   }
 }

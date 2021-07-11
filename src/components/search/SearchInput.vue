@@ -45,11 +45,18 @@ export default class SearchInput extends Vue {
 }
 </script>
 <style scoped lang="less">
+@import '../../styles/constants.less';
 .search-input-box {
   width: 700px;
   height: 50px;
   display: flex;
   flex-direction: row;
+  ::-webkit-input-placeholder {
+    color: #409EFF;
+    opacity: 0.5;
+    font-size: 14px;
+    font-weight: bolder;
+  }
   ::v-deep .el-input {
     line-height: 50px;
     .el-input__inner {
