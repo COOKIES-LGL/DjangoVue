@@ -1,3 +1,5 @@
+import { SideBarMenuType } from './types';
+
 export const ErrorCodes = {
   SUCCESS: 0,
   NOT_LOGIN: 1001,
@@ -29,6 +31,39 @@ export const SideBarMenuIcons: string[] = [
   'el-icon-platform-eleme',
 ];
 
+export const BlogSideBarMenu: SideBarMenuType[] = [
+  {
+    id: 1,
+    label: '掘金',
+    icon: 'el-icon-s-platform',
+  },
+  {
+    id: 2,
+    label: '知乎',
+    icon: 'el-icon-mobile-phone',
+  },
+  {
+    id: 3,
+    label: '思否',
+    icon: 'el-icon-s-grid',
+  },
+  {
+    id: 4,
+    label: '简书',
+    icon: 'el-icon-s-finance',
+  },
+  {
+    id: 5,
+    label: '脉脉',
+    icon: 'el-icon-s-ticket',
+  },
+  {
+    id: 6,
+    label: 'BiliBili',
+    icon: 'el-icon-s-finance',
+  },
+];
+
 export const CollectionRequest = [
   '1、本站收录内容主要面向：常用实用性网站。',
   '2、本站收录条件主要说明：需是合法正规站点或内容。',
@@ -48,7 +83,7 @@ export const CollectionRequest = [
 // 在线五子棋 http://html5.huceo.com/wzq/
 // 渐进式表单输入
 // 常用开源包 ioredis
-// pycharm注册码 http://vrg123.com/
+// pycharm注册码 http://vrg123.com/ 5464 https://www.yht7.com/news/142272
 // Docker Hub https://hub.docker.com/search?q=mysql&type=image
 // 脉脉
 // 3D three.js 制作三D展厅

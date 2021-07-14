@@ -33,32 +33,23 @@
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import { ref, reactive } from 'vue';
-import { SideBarMenuIcons, SideBarMenuType } from '@/constants';
-import { LinkCategoryItemType } from '@/api';
+import { SideBarMenuType } from '@/constants';
 
 @Options({
   props: {
-    propsData: '',
+    propsData: Object,
   },
   emits: {
     changeSelect: ''
   }
 })
 export default class SideBar extends Vue {
-  private propsData: LinkCategoryItemType[];
-  private sideBarMenuIcons: string[] = SideBarMenuIcons;
+  private propsData: SideBarMenuType[];
  
   private SideBar = setup(() => {
-    const sideBarMenu: SideBarMenuType[] = reactive([]);
-    this.propsData.forEach((item: LinkCategoryItemType, index: number) => {
-      const sideBaritem: SideBarMenuType = {
-        label: item.category_name,
-        id: item.id,
-        icon: this.sideBarMenuIcons[index],
-      };
-      sideBarMenu.push(sideBaritem);
-    });
+    const sideBarMenu: SideBarMenuType[] = reactive(this.propsData);
 
+    console.log(this.propsData, '11');
     const isCollapse = ref(false);
     const changeCollapse = () => {
       isCollapse.value = !isCollapse.value;
@@ -100,6 +91,8 @@ export default class SideBar extends Vue {
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      font-size: 14px;
+      font-weight: bold;
     }
   }
 }

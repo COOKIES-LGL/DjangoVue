@@ -1,5 +1,5 @@
 <template>
-  <CardPage :sidebarList="categoryLv1" @changeSelect="DiscoverIndex.changeCategoryLv1">
+  <CardPage :sidebarList="DiscoverIndex.sideBarMenu" @changeSelect="DiscoverIndex.changeCategoryLv1">
     <template v-slot:content>
       <div class="block">
         <el-carousel trigger="click" height="150px">
@@ -16,12 +16,12 @@
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch, onBeforeMount } from 'vue';
+import { ref, watch, onBeforeMount, reactive } from 'vue';
 import CardPage from '@/components/CardPage.vue';
 import { useStore } from 'vuex';
 import Category from './Category.vue';
 import { LinkCategoryItemType } from '@/api';
-import { SideBarMenuType } from '@/constants';
+import { SideBarMenuType, SideBarMenuIcons } from '@/constants';
 
 @Options({
   props: {
@@ -40,18 +40,37 @@ import { SideBarMenuType } from '@/constants';
 export default class Discover extends Vue {
   private type: string;
   private categoryLv1: LinkCategoryItemType[] = [];
-  private FormatData(linkCategoryList: LinkCategoryItemType[]) {
-    this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
-  }
+  private sideBarMenuIcons: string[] = SideBarMenuIcons;
+
+  // private FormatData(linkCategoryList: LinkCategoryItemType[]) {
+  //   this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
+  //   this.categoryLv1.forEach((item: LinkCategoryItemType, index: number) => {
+  //     const sideBaritem: SideBarMenuType = {
+  //       label: item.category_name,
+  //       id: item.id,
+  //       icon: this.sideBarMenuIcons[index],
+  //     };
+  //     this.sideBarMenu.push(sideBaritem);
+  //   });
+  // }
 
   private DiscoverIndex = setup(async () => {
     const store = useStore();
+    let sideBarMenu: SideBarMenuType[] = reactive([]);
     onBeforeMount(() => {
       // 生命勾子
       console.log('beforeMoubted');
     });
     await store.dispatch('getCategoryList').then((res: LinkCategoryItemType[]) => {
-      this.FormatData(res);
+      this.categoryLv1 = res.filter((item: LinkCategoryItemType) => item.category_level === 1);
+      this.categoryLv1.forEach((item: LinkCategoryItemType, index: number) => {
+        const sideBaritem: SideBarMenuType = {
+          label: item.category_name,
+          id: item.id,
+          icon: this.sideBarMenuIcons[index],
+        };
+        sideBarMenu.push(sideBaritem);
+      });
     });
     let currentCategoryLv1Id = ref<number>(this.categoryLv1[0].id);
     let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
@@ -65,6 +84,7 @@ export default class Discover extends Vue {
       console.log(newValue);
     });
     return {
+      sideBarMenu,
       changeCategoryLv1,
       currentCategoryLv1,
       currentCategoryLv1Id,

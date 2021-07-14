@@ -19,7 +19,7 @@ import { LinkCategoryItemType } from '@/api';
 
 @Options({
   props: {
-    sidebarList: '',
+    sidebarList: Object,
     hideSearch: Boolean,
   },
   emits: {

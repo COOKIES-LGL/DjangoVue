@@ -6,10 +6,14 @@ export const getCollectionCategory = async (): Promise<WeatherType[]> => {
   return res;
 };
 
-export const getLinkList2 = async (id: number): Promise<WeatherType> => {
-  const res: WeatherType = await api.get('/', {
+export const getJueJinList = async (id: number): Promise<WeatherType> => {
+  const res: WeatherType = await api.post('https://api.juejin.cn/recommend_api/v1/article/recommend_cate_feed', {
     params: {
-      collection_id: id,
+      id_type: 2,
+      sort_type: 3,
+      cate_id: '6809637767543259144',
+      cursor: '0',
+      limit: 20,
     },
   });
   return res;

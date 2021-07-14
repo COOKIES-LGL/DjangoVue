@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about us page</h1>
+    <a href="https://COOKIES-LGL.github.io">归零@you</a>
   </div>
 </template>
 <script lang="ts">
