@@ -1,13 +1,6 @@
 <template>
   <CardPage :sidebarList="DiscoverIndex.sideBarMenu" @changeSelect="DiscoverIndex.changeCategoryLv1">
     <template v-slot:content>
-      <div class="block">
-        <el-carousel trigger="click" height="150px">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <h3 class="carousel-inner-box">{{ item }}</h3>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
       <div class="category-title"><i class="el-icon-discount"></i>{{ DiscoverIndex.currentCategoryLv1 }}</div>
       <category :currentCategoryLv1="DiscoverIndex.currentCategoryLv1Id"></category>
       <!-- <el-empty description="暂无数据"></el-empty> -->
@@ -93,15 +86,6 @@ export default class Discover extends Vue {
 }
 </script>
 <style scoped lang="less">
-.block {
-  width: 94%;
-  margin: 0px auto 20px;
-  background: #ffffff;
-  .carousel-inner-box {
-    background: #eee;
-    height: 100%;
-  }
-}
 .category-title {
   font-size: 20px;
   width: 94%;
