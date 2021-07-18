@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import { LinkItemType } from '@/api';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 @Options({
   props: {
@@ -32,10 +32,18 @@ export default class CategoryCard extends Vue {
   private CategoryCard = setup(() => {
     const linkItem = ref<LinkItemType>(this.linkItem);
     // console.log(linkItem.value);
-    const iconFromTitle: string = linkItem.value.link_title.slice(0, 1);
+    let iconFromTitle = ref<string>((linkItem.value.link_title.slice(0, 1)).toUpperCase());
     const linktoUrl = () => {
       window.open(linkItem.value.link_url)
     }
+    watch(
+      this.$props,
+      (newValue: any) => {
+        linkItem.value = newValue.linkItem;
+        iconFromTitle.value = (linkItem.value.link_title.slice(0, 1)).toUpperCase();
+      },
+      { immediate: true }
+    );
     return {
       iconFromTitle,
       linkItem,

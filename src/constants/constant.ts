@@ -110,4 +110,4 @@ export const CollectionRequest = [
 // 小码短链接
 // 用户唯一标识统计 ip地址获取,需单独拉去一个App应用
 // 增加常用category
-// #f6f9fb
+// 域名 guilink.cn

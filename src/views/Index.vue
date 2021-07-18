@@ -54,16 +54,18 @@ export default class Index extends Vue {
   flex-direction: column;
   align-items: center;
   .block {
-    width: 40%;
+    width: 50%;
     margin: 120px auto 20px;
     .carousel-inner-box {
       background: #eee;
       height: 100%;
       /deep/ .el-carousel-item {
         padding: 5px;
+        width: 200px;
         img {
+          margin: 0 auto;
           height: 100%;
-          width: 100%;
+          width: 200px;
         }
       }
     }
