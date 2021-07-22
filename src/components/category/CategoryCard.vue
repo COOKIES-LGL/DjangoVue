@@ -8,7 +8,7 @@
     <el-tooltip
       :append-to-body="false"
       placement="top"
-      :show-after="300"
+      :show-after="2000"
       effect="light"
       :content="CategoryCard.linkItem.link_desc"
     >

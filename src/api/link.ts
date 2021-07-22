@@ -22,3 +22,17 @@ export const getSpecialLinkList = async (params: GetLinkListParams): Promise<Axi
   });
   return res;
 };
+
+export const addSpecialLink = async (params: GetLinkListParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse = await api.post('/', {
+    params,
+  });
+  return res;
+};
+
+export const addLink = async (params: GetLinkListParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse = await api.post('/', {
+    params,
+  });
+  return res;
+};

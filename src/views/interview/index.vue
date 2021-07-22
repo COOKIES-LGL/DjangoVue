@@ -53,7 +53,10 @@ export default class Interview extends Vue {
     onBeforeMount(() => {
       console.log(111111);
     });
-    await store.dispatch('getCategoryList');
+    await store.dispatch('getSpecialTypeCategoryList', { category_type: 1 }).then(res => {
+      console.log(res);
+    });
+
     const searchValue = ref<string>(null);
     const changeCollapse = () => {
       console.log(111);

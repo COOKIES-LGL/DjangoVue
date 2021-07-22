@@ -52,7 +52,7 @@ export default class Discover extends Vue {
     let sideBarMenu: SideBarMenuType[] = reactive([]);
     onBeforeMount(() => {
       // 生命勾子
-      console.log('beforeMoubted');
+      console.log('beforeMounted');
     });
     await store.dispatch('getCategoryList').then((res: LinkCategoryItemType[]) => {
       this.categoryLv1 = res.filter((item: LinkCategoryItemType) => item.category_level === 1);

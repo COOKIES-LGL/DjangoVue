@@ -8,7 +8,9 @@
             <router-view></router-view>
           </template>
           <template #fallback>
-            <div>加载中...</div>
+            <div class="todo-box">
+              <img :src="toDoImage" />
+            </div>
           </template>
         </suspense>
       </div>
@@ -22,6 +24,7 @@
 import { Options, Vue } from 'vue-class-component';
 import HeaderBar from '@/components/HeaderBar.vue'; // @ is an alias to /src
 import Footer from '@/components/Footer.vue';
+import toDoImage from '@/assets/todo.png';
 
 @Options({
   components: {
@@ -29,7 +32,9 @@ import Footer from '@/components/Footer.vue';
     Footer,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  private toDoImage: string = toDoImage;
+}
 </script>
 <style scoped lang="less">
 @import '../styles/constants.less';
@@ -49,6 +54,17 @@ export default class Home extends Vue {}
       padding-top: 74px;
       display: flex;
       flex-direction: row;
+      .todo-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 250px auto;
+        img {
+          height: 200px;
+          width: 200px;
+        }
+      }
     }
   }
 }

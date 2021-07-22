@@ -1,7 +1,6 @@
 <template>
   <div class="filter-box">
     <el-tabs
-      :tab-position="'left'"
       type="card"
       v-model="LeftFilterIndex.filterObject.category_lv1"
       @tab-click="LeftFilterIndex.handleTab1Click"
@@ -14,7 +13,6 @@
       >
         <div class="inner-content">
           <el-tabs
-            :tab-position="'left'"
             v-model="LeftFilterIndex.filterObject.category_lv2"
             @tab-click="LeftFilterIndex.handleTab2Click"
           >

@@ -35,3 +35,8 @@ export interface GetLinkListForOrderParams {
   lv1: number;
   lv2: number;
 }
+
+export interface GetCategoryByTypeParam {
+  category_type: number;
+}
+

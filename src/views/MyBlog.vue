@@ -2,11 +2,12 @@
   <cardPage :sidebarList="BlogSideBarMenu" @changeSelect="BlogIndex.changeCategoryLv1">
     <template v-slot:content>
       <div class="category-title"><i class="el-icon-discount"></i>{{ BlogIndex.currentCategoryLv1 }}</div>
-      <div class="content">
+      <div class="content-container">
         <left-filter-tab @filterChange="BlogIndex.filterChange" :currentCategoryLv1Id="1"></left-filter-tab>
+        <div class="content">
         <!-- <category-panel></category-panel> -->
+        </div>
       </div>
-      <!-- <el-empty description="暂无数据"></el-empty> -->
     </template>
   </cardPage>
 </template>
@@ -45,4 +46,13 @@ export default class MyBlog extends Vue {
   });
 }
 </script>
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.content-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  .content {
+    flex: 1;
+  }
+}
+</style>
