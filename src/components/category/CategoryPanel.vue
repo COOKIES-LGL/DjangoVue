@@ -1,18 +1,31 @@
 <template>
   <div class="category-index-box">
-    <div class="category-title"><i class="el-icon-discount"></i>{{CategoryPanel.LinkItemList.categoryName}}</div>
-    <div class="category-card-container">
+    <div class="category-title"><i class="el-icon-discount"></i>{{ CategoryPanel.LinkItemList.categoryName }}</div>
+    <VueDraggableNext
+      class="category-card-container"
+      :animation="200"
+      v-model="CategoryPanel.LinkItemList.linkList"
+      @end="CategoryPanel.onDraggeEnd"
+      draggable=".category-card-box"
+    >
       <CategoryCard v-for="(item, index) in CategoryPanel.LinkItemList.linkList" :key="index" :linkItem="item" />
       <add-card />
-    </div>
+    </VueDraggableNext>
   </div>
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted, toRaw } from 'vue';
 import CategoryCard from './CategoryCard.vue';
 import AddCard from './AddCard.vue';
-import { LinkItemType } from '@/api';
+import { LinkItemType, postLinkListForOrder } from '@/api';
+import { VueDraggableNext } from 'vue-draggable-next';
+
+export interface CategoryPanelType {
+  id: number;
+  categoryName: string;
+  linkList: LinkItemType[];
+}
 
 @Options({
   props: {
@@ -21,13 +34,30 @@ import { LinkItemType } from '@/api';
   components: {
     CategoryCard,
     AddCard,
+    VueDraggableNext,
   },
 })
 export default class CategoryPanel extends Vue {
-  private dataList: LinkItemType[];
+  private dataList: CategoryPanelType;
 
   private CategoryPanel = setup(() => {
-    let LinkItemList = ref<LinkItemType[]>(this.dataList);
+    let LinkItemList = ref<CategoryPanelType>(this.dataList);
+    let rawLinkListData: LinkItemType[] = this.dataList.linkList;
+
+    onMounted(() => {
+      rawLinkListData = toRaw(this.dataList).linkList;
+    });
+
+    const onDraggeEnd = (e: any) => {
+      const { oldIndex, newIndex } = e;
+      [rawLinkListData[oldIndex] ,rawLinkListData[newIndex]] = [rawLinkListData[newIndex], rawLinkListData[oldIndex]];
+      console.log(oldIndex, newIndex , rawLinkListData);
+      for (let index = 0 ; index < rawLinkListData.length; index ++) {
+        rawLinkListData[index].order_id = index;
+      }
+      postLinkListForOrder({ linkList: rawLinkListData });
+    };
+
     watch(
       this.$props,
       (newValue: any) => {
@@ -35,8 +65,10 @@ export default class CategoryPanel extends Vue {
       },
       { immediate: true }
     );
+
     return {
       LinkItemList,
+      onDraggeEnd,
     };
   });
 }
@@ -60,8 +92,7 @@ export default class CategoryPanel extends Vue {
     flex-direction: row;
     align-items: center;
     background: #ffffff;
-    border-bottom: 2px solid @infomation3;
-    border-radius: 15px;
+    border-top: 1px solid @infomation;
   }
   .category-card-container {
     width: 100%;

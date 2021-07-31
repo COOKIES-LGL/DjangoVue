@@ -1,6 +1,6 @@
 import { api } from './base';
 import { AxiosResponse } from 'axios';
-import { GetLinkListParams, GetLinkListForOrderParams, LinkItemType } from './types';
+import { GetLinkListParams, PostLinkListForOrderParams, GetLinkListForOrderParams, LinkItemType } from './types';
 
 export const getLinkList = async (params: GetLinkListParams): Promise<AxiosResponse> => {
   const res: AxiosResponse<LinkItemType> = await api.get('/getLinksById/', {
@@ -9,8 +9,15 @@ export const getLinkList = async (params: GetLinkListParams): Promise<AxiosRespo
   return res;
 };
 
+export const postLinkListForOrder = async (params: PostLinkListForOrderParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse<LinkItemType> = await api.post('/orderLinksByIds/', {
+    params,
+  });
+  return res;
+};
+
 export const getLinkListForOrder = async (params: GetLinkListForOrderParams): Promise<AxiosResponse> => {
-  const res: AxiosResponse<LinkItemType> = await api.get('/getLinksByIds/', {
+  const res: AxiosResponse<LinkItemType> = await api.post('/getLinksByIds/', {
     params,
   });
   return res;

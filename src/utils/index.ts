@@ -1,7 +1,7 @@
 import numeral from 'numeral'; // 数字格式化工具包
 import dayjs from 'dayjs'; // 日期格式化工具包
 
-export function isMobile() {
+export function isMobile(): boolean {
   let res = false;
   const clientWidth = window.innerWidth;
   if (clientWidth) {
@@ -16,7 +16,7 @@ export function isMobile() {
   return res;
 }
 
-export function debounce(func: any, delay = 800) {
+export function debounce(func: () => void, delay = 800): () => void {
   let timer: NodeJS.Timeout = null;
   return function nextFunc(...args: any) {
     clearTimeout(timer);
@@ -28,7 +28,7 @@ export function debounce(func: any, delay = 800) {
   };
 }
 
-export function throttle(func: any, wait = 800) {
+export function throttle(func: () => void, wait = 800): () => void {
   let timeout: NodeJS.Timeout = null;
   return function nextFunc(...args: any[]) {
     if (!timeout) {
@@ -40,20 +40,14 @@ export function throttle(func: any, wait = 800) {
   };
 }
 
-export function formatNumber(
-  input: string | number,
-  format: string = '0,0',
-): string {
+export function formatNumber(input: string | number, format = '0,0'): string {
   if (!input) {
     return '0';
   }
   return numeral(input).format(format);
 }
 
-export function formatDate(
-  date?: dayjs.ConfigType,
-  format: string = 'YYYY-MM-DD HH:mm:ss',
-): string {
+export function formatDate(date?: dayjs.ConfigType, format = 'YYYY-MM-DD HH:mm:ss'): string {
   if (!date) {
     return '-';
   }

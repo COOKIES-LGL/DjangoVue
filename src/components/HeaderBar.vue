@@ -1,8 +1,7 @@
 <template>
   <div class="header-bar-box">
     <div class="menu-left">
-      <i class="el-icon-heavy-rain icon-box"></i>
-      <div>深圳</div>
+      <div>❤️喜欢可以按 Ctrl+D 收藏!</div>
     </div>
     <ul class="menu-list">
       <li
@@ -65,7 +64,7 @@ export default class HeaderBar extends Vue {
 .header-bar-box {
   height: 74px;
   width: 100%;
-  padding-left: 250px;
+  padding-left: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -78,6 +77,7 @@ export default class HeaderBar extends Vue {
     flex-direction: row;
     align-items: center;
     font-size: 16px;
+    font-weight: bold;
     .icon-box {
       height: 25px;
       width: 25px;

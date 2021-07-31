@@ -56,8 +56,8 @@ const webkitLineClampPolyfill = (el: HTMLElement, text: string, lineClamp: numbe
   `;
 };
 
- export const lineClampParams ={
-  mounted: (el, binding) => {
+export const lineClampParams = {
+  mounted: (el: HTMLElement, binding: any): void => {
     const lineClamp = binding.value;
     if (isNaN(lineClamp)) {
       console.error('v-line-clamp error: lineClamp only receive number');

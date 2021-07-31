@@ -16,7 +16,7 @@ import { ref, watch, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import FilterTab from '@/components/FilterTab.vue';
 import { LinkCategoryItemType, getLinkList, GetLinkListParams, LinkItemType } from '@/api';
-import CategoryPanel from '@/components/category/CategoryPanel.vue';
+import CategoryPanel, { CategoryPanelType }  from '@/components/category/CategoryPanel.vue';
 
 interface LinkCategoryObjectType {
   [key: string]: LinkCategoryItemType[];
@@ -62,7 +62,7 @@ export default class Category extends Vue {
           const panelLinkList = response.filter((link: LinkItemType) => {
             return item.id === link.parent_id;
           });
-          const tempObject = {
+          const tempObject: CategoryPanelType = {
             id: item.id,
             categoryName: item.category_name,
             linkList: panelLinkList,

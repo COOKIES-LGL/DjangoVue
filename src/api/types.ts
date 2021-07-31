@@ -31,6 +31,10 @@ export interface LinkItemType {
 export interface GetLinkListParams {
   grandparent_id: number;
 }
+export interface PostLinkListForOrderParams {
+  linkList: LinkItemType[];
+}
+
 export interface GetLinkListForOrderParams {
   lv1: number;
   lv2: number;

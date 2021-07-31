@@ -12,7 +12,8 @@
             >的相关规定，否则我们有权对您发表的内容进行举报。
           </h3>
           <h3>* 本站全人工审核，发广告、填写不规范，无法通过审核，感谢理解！</h3>
-          <h3>* 本站拥有最终解释权</h3>
+          <h3>* 一般提交的申请会在三个工作日内完成审核。</h3>
+          <h3>* 本站拥有最终解释权。</h3>
         </div>
         <el-card class="label-right-box">
           <template #header>
@@ -92,7 +93,7 @@ export default class SiteCollect extends Vue {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20px;
+  padding: 50px 20px;
   .label-left-box {
     text-align: left;
   }
@@ -100,6 +101,7 @@ export default class SiteCollect extends Vue {
     margin-top: 20px;
     .text-item {
       text-align: left;
+      line-height: 30px;
     }
   }
 }

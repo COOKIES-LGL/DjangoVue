@@ -82,13 +82,10 @@ export const CollectionRequest = [
 
 // 在线五子棋 http://html5.huceo.com/wzq/
 // 渐进式表单输入
-// 常用开源包 ioredis
 // pycharm注册码 http://vrg123.com/ 5464 https://www.yht7.com/news/142272
 // Docker Hub https://hub.docker.com/search?q=mysql&type=image
 // 脉脉
 // 3D three.js 制作三D展厅
-// can i use
-// https://tool.lu/coderunner/ 类似codepen
 
 // 使用A标签进行跳转
 // 图片制作,(gif表情, 任意格式图片)
@@ -99,10 +96,6 @@ export const CollectionRequest = [
 // gulp
 // ejs
 
-// exec-sh
-// simple-git
-// fs-extra
-// 在console 中输入内容
 // https://tool.lu/c/geek/
 // fest.js
 // Django添加日志
@@ -113,4 +106,3 @@ export const CollectionRequest = [
 // 域名 guilink.cn
 // 虎课网 https://huke88.com/
 // 开发者搜索 https://kaifa.baidu.com/
-// electron 

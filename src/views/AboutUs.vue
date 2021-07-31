@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about us page</h1>
+    <h1>我们不生产网站,我们只是网站的搬运工</h1>
     <a href="https://COOKIES-LGL.github.io">归零@you</a>
   </div>
 </template>
