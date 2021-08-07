@@ -4,6 +4,11 @@ export const SearchTabList = [
     value: 'search',
     children: [
       {
+        label: '开发者',
+        holdplace: '开发者搜索',
+        url: 'https://kaifa.baidu.com/searchPage?wd='
+      },
+      {
         label: '百度',
         holdplace: '百度一下',
         url: 'https://www.baidu.com/s?wd=',

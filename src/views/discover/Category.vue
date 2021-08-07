@@ -37,21 +37,25 @@ export default class Category extends Vue {
 
   private CategoryIndex = setup(() => {
     const currentCategoryLv1 = ref<number>(1);
+    const currentCategoryLv2 = ref<number>(1);
     const router = useRouter();
     let reactiveData = reactive({
       categoryPanelData: {},
     });
 
     const filterChange = (filterObject: any, category: LinkCategoryItemType[]) => {
-      console.log(filterObject, 'bject', category);
+      console.log(filterObject, 'object', category);
       router.push({
         // 增加router参数
         path: '/discover',
         query: {
-          lv1: filterObject.category_lv2,
-          lv2: filterObject.category_lv3,
+          lv1: filterObject.category_lv1,
+          lv2: filterObject.category_lv2,
+          lv3: filterObject.category_lv3,
         },
       });
+      if (currentCategoryLv2.value === filterObject.category_lv2) return;
+      currentCategoryLv2.value = filterObject.category_lv2;
       const params: GetLinkListParams = {
         grandparent_id: filterObject.category_lv2,
       };
@@ -70,7 +74,7 @@ export default class Category extends Vue {
           renderList.push(tempObject);
         });
         reactiveData.categoryPanelData = renderList;
-        console.log(reactiveData.categoryPanelData);
+        // console.log(reactiveData.categoryPanelData);
       });
     };
     watch(
