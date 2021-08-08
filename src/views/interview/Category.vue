@@ -46,6 +46,7 @@ export default class Category extends Vue {
 
     const filterChange = (filterObject: any, category: LinkCategoryItemType[]) => {
       console.log(filterObject, 'object', category);
+      if(!category) return;
       router.push({
         // 增加router参数
         path: '/interview',
