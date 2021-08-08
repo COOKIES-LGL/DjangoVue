@@ -84,7 +84,8 @@ export default class CategoryPanel extends Vue {
   justify-content: center;
   align-items: center;
   .category-title {
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: bold;
     padding-left: 20px;
     width: 100%;
     height: 50px;

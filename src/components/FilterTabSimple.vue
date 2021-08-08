@@ -15,15 +15,6 @@
               :label="item.category_name"
               :name="item.id.toString()"
             >
-              <el-tabs v-model="FilterIndex.filterObject.category_lv3" @tab-click="FilterIndex.handleTab3Click">
-                <el-tab-pane
-                  v-for="(item, index) in FilterIndex.category.categoryLv3"
-                  :key="index"
-                  :label="item.category_name"
-                  :name="item.id.toString()"
-                >
-                </el-tab-pane>
-              </el-tabs>
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -50,19 +41,16 @@ interface CategoryLv2Array {
     currentCategoryLv1Id: Number,
   },
 })
-export default class FilterTab extends Vue {
-  private currentCategoryLv1Id = 1;
+export default class FilterTabSimple extends Vue {
+  private currentCategoryLv1Id: number;
   private FilterIndex = setup(() => {
-    // const currentCategoryLv1Id = ref<number>(inject('currentCategoryLv1Id'));可以获取到无法弄到响应式,后续TODO
     let category: CategoryLv2Array = reactive({
       categoryLv1: [],
       categoryLv2: [],
-      categoryLv3: [],
     });
     const filterObject = reactive({
       category_lv1: '1',
       category_lv2: '1',
-      category_lv3: '1',
     });
     const route = useRoute();
     const store = useStore();
@@ -73,7 +61,7 @@ export default class FilterTab extends Vue {
       category.categoryLv1 = allLinkCategory.filter(
         (item: LinkCategoryItemType) => item.category_parent == currentCategoryLv1Id
       );
-      if(category.categoryLv1.length <= 0) return;
+      if (category.categoryLv1.length <= 0) return;
       filterObject.category_lv1 = category.categoryLv1[0].id.toString();
       if (category.categoryLv1 && category.categoryLv1.length > 0) {
         category.categoryLv2 = allLinkCategory.filter(
@@ -81,13 +69,6 @@ export default class FilterTab extends Vue {
         );
         if(category.categoryLv2.length <= 0) return;
         filterObject.category_lv2 = category.categoryLv2[0] && category.categoryLv2[0].id.toString();
-      }
-      if (category.categoryLv2 && category.categoryLv2.length > 0) {
-        category.categoryLv3 = allLinkCategory.filter(
-          (item: LinkCategoryItemType) => item.category_parent == category.categoryLv2[0].id
-        );
-        if(category.categoryLv3.length <= 0) return;
-        filterObject.category_lv3 = category.categoryLv3[0] && category.categoryLv3[0].id.toString();
       }
     };
 
@@ -97,7 +78,6 @@ export default class FilterTab extends Vue {
       if (queryObject.lv1 && queryObject.lv2) {
         handleTab1Click(queryObject.lv1);
         handleTab2Click(queryObject.lv2);
-        handleTab3Click(queryObject.lv3);
       }
     });
 
@@ -105,6 +85,7 @@ export default class FilterTab extends Vue {
       this.$props,
       (newValue: any) => {
         this.currentCategoryLv1Id = newValue.currentCategoryLv1Id;
+        console.log(this.currentCategoryLv1Id);
         formatData(this.currentCategoryLv1Id);
       },
       { immediate: false }
@@ -126,12 +107,6 @@ export default class FilterTab extends Vue {
       });
       if (category.categoryLv2 && category.categoryLv2.length > 0) {
         filterObject.category_lv2 = category.categoryLv2[0].id.toString();
-        category.categoryLv3 = allLinkCategory.filter(
-          (item: LinkCategoryItemType) => item.category_parent == category.categoryLv2[0].id
-        );
-        if (category.categoryLv3 && category.categoryLv3.length > 0) {
-          filterObject.category_lv3 = category.categoryLv3[0].id.toString();
-        }
       }
       // console.log(category_lv2.categoryLv2);
     };
@@ -139,26 +114,12 @@ export default class FilterTab extends Vue {
     const handleTab2Click = (item: any) => {
       const currentTab2Id = item.props ? item.props.name : item;
       filterObject.category_lv2 = currentTab2Id;
-      category.categoryLv3 = allLinkCategory.filter((item: LinkCategoryItemType) => {
-        return item.category_parent == Number(currentTab2Id);
-      });
-      if (category.categoryLv3 && category.categoryLv3.length > 0) {
-        filterObject.category_lv3 = category.categoryLv3[0].id.toString();
-      }
-      // console.log(category_lv3.categoryLv3);
-    };
-
-    const handleTab3Click = (item: any) => {
-      const currentTab3Id = item.props ? item.props.name : item;
-      filterObject.category_lv3 = currentTab3Id;
-      console.log(currentTab3Id, 'pageScroll');
     };
 
     return {
       filterObject,
       handleTab1Click,
       handleTab2Click,
-      handleTab3Click,
       category,
     };
   });

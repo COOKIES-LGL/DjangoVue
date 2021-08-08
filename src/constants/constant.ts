@@ -9,7 +9,7 @@ export const ErrorCodes = {
 export const HeaderBarMenu = [
   { label: '首页', value: 'home' },
   { label: '网址发现', value: 'discover' },
-  { label: '博客广场', value: 'myBlog' },
+  // { label: '博客广场', value: 'myBlog' },
   { label: '面经广场', value: 'interview' },
   { label: '在线工具', value: 'onlineTool' },
   { label: '网址收录', value: 'siteCollect' },

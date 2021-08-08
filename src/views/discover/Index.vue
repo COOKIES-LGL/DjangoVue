@@ -9,7 +9,7 @@
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, watch, onBeforeMount, reactive } from 'vue';
+import { ref, onBeforeMount, reactive } from 'vue';
 import CardPage from '@/components/CardPage.vue';
 import { useStore } from 'vuex';
 import Category from './Category.vue';
@@ -17,9 +17,6 @@ import { LinkCategoryItemType } from '@/api';
 import { SideBarMenuType, SideBarMenuIcons } from '@/constants';
 
 @Options({
-  props: {
-    type: String,
-  },
   components: {
     CardPage,
     Category,
@@ -31,21 +28,8 @@ import { SideBarMenuType, SideBarMenuIcons } from '@/constants';
   },
 })
 export default class Discover extends Vue {
-  private type: string;
   private categoryLv1: LinkCategoryItemType[] = [];
   private sideBarMenuIcons: string[] = SideBarMenuIcons;
-
-  // private FormatData(linkCategoryList: LinkCategoryItemType[]) {
-  //   this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
-  //   this.categoryLv1.forEach((item: LinkCategoryItemType, index: number) => {
-  //     const sideBaritem: SideBarMenuType = {
-  //       label: item.category_name,
-  //       id: item.id,
-  //       icon: this.sideBarMenuIcons[index],
-  //     };
-  //     this.sideBarMenu.push(sideBaritem);
-  //   });
-  // }
 
   private DiscoverIndex = setup(async () => {
     const store = useStore();
@@ -69,13 +53,9 @@ export default class Discover extends Vue {
     let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
 
     const changeCategoryLv1 = function(newValue: SideBarMenuType) {
-      console.log(newValue, 'newValue');
       currentCategoryLv1.value = newValue.label;
       currentCategoryLv1Id.value = newValue.id;
     };
-    watch(this.$props, (newValue: any) => {
-      console.log(newValue);
-    });
     return {
       sideBarMenu,
       changeCategoryLv1,

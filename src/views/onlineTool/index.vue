@@ -10,22 +10,6 @@
         </el-carousel>
       </div>
       <category></category>
-      <div class="category-box">
-        <div class="category-title"><i class="el-icon-discount"></i>前端</div>
-        <el-divider></el-divider>
-        <!-- <el-tabs
-          v-model="DiscoverIndex.activeName"
-          type="card"
-          @tab-click="DiscoverIndex.handleTabClick"
-        >
-          <el-tab-pane
-            v-for="(item, index) in SearchTabList"
-            :key="index"
-            :label="item.label"
-            :name="item.value"
-          ></el-tab-pane>
-        </el-tabs> -->
-      </div>
       <!-- <el-empty description="暂无数据"></el-empty> -->
     </template>
   </CardPage>
@@ -53,7 +37,9 @@ export default class OnlineTool extends Vue {
     onBeforeMount(() => {
       console.log(111111);
     });
-    await store.dispatch('getCategoryList');
+    await store.dispatch('getSpecialTypeCategoryList', { category_type: 2 }).then(res => {
+      console.log(res);
+    });
     const searchValue = ref<string>(null);
     const changeCollapse = () => {
       console.log(111);
@@ -73,26 +59,5 @@ export default class OnlineTool extends Vue {
   width: 100%;
   margin: 20px auto;
   background: #ffffff;
-}
-.category-box {
-  background: red;
-  width: 92%;
-  margin: 0 auto;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .category-title {
-    font-size: 20px;
-    padding-left: 20px;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 15px;
-  }
 }
 </style>

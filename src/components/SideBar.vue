@@ -1,14 +1,14 @@
 <template>
   <div class="sidebar-container">
-    <div class="logo-box" @click="SideBar.changeCollapse">To Be Stronger</div>
+    <div class="logo-box" @click="SideBar.changeCollapse">{{SideBar.logoText}}</div>
     <el-menu
-      default-active="0"
+      :default-active="SideBar.sideBarMenu[0].id"
       class="el-menu-vertical-demo"
       :collapse="SideBar.isCollapse"
       :collapse-transition="true"
       @select="SideBar.elMenuChange"
     >
-      <template v-for="(item, index) in SideBar.sideBarMenu" :key="index">
+      <template v-for="item in SideBar.sideBarMenu" :key="item.id.toString()">
         <el-menu-item :index="item.id.toString()" class="el-menu-item-class" v-if="!item.children">
           <i :class="item.icon"></i>
           <template #title>{{ item.label }}</template>
@@ -48,17 +48,18 @@ export default class SideBar extends Vue {
  
   private SideBar = setup(() => {
     const sideBarMenu: SideBarMenuType[] = reactive(this.propsData);
-
-    console.log(this.propsData, '11');
+    const logoText = ref('To Be Stronger');
     const isCollapse = ref(false);
     const changeCollapse = () => {
       isCollapse.value = !isCollapse.value;
+      logoText.value = logoText.value === '❤️' ? 'To Be Stronger' : '❤️';
     };
     const elMenuChange = (index: number) => {
       const targetItem = sideBarMenu.find((item: SideBarMenuType) => item.id == index);
       this.$emit('changeSelect', targetItem);
     };
     return {
+      logoText,
       isCollapse,
       sideBarMenu,
       changeCollapse,
@@ -81,6 +82,7 @@ export default class SideBar extends Vue {
     font-size: 28px;
     font-weight: bold;
     width: auto;
+    cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
