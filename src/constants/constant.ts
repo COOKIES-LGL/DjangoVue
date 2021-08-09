@@ -82,7 +82,7 @@ export const CollectionRequest = [
 
 // 在线五子棋 http://html5.huceo.com/wzq/
 // 渐进式表单输入
-// pycharm注册码 http://vrg123.com/ 5464 https://www.yht7.com/news/142272
+// pycharm注册码 http://vrg123.com/ 4565 https://www.yht7.com/news/142272
 // Docker Hub https://hub.docker.com/search?q=mysql&type=image
 // 脉脉
 // 3D three.js 制作三D展厅

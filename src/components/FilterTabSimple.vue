@@ -33,7 +33,6 @@ import { LinkCategoryItemType } from '@/api';
 interface CategoryLv2Array {
   categoryLv1?: LinkCategoryItemType[];
   categoryLv2?: LinkCategoryItemType[];
-  categoryLv3?: LinkCategoryItemType[];
 }
 
 @Options({
@@ -94,7 +93,7 @@ export default class FilterTabSimple extends Vue {
     watch(
       filterObject,
       (newValue: any) => {
-        this.$emit('filterChange', newValue, category.categoryLv3);
+        this.$emit('filterChange', newValue, category.categoryLv2);
       },
       { immediate: false, deep: true }
     );
