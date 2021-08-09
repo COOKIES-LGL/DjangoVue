@@ -46,7 +46,7 @@ export default class Category extends Vue {
 
     const filterChange = (filterObject: any, category: LinkCategoryItemType[]) => {
       console.log(filterObject, 'object', category);
-      if(!category) return;
+      if (!category) return;
       router.push({
         // 增加router参数
         path: '/interview',
@@ -63,7 +63,6 @@ export default class Category extends Vue {
       getLinkList(params).then(res => {
         const response = res.data;
         const renderList = [];
-        if (response.length <= 0) return;
         category.forEach((item: LinkCategoryItemType) => {
           const panelLinkList = response.filter((link: LinkItemType) => {
             return item.id === link.parent_id;
