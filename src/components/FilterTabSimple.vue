@@ -66,7 +66,7 @@ export default class FilterTabSimple extends Vue {
         category.categoryLv2 = allLinkCategory.filter(
           (item: LinkCategoryItemType) => item.category_parent == category.categoryLv1[0].id
         );
-        if(category.categoryLv2.length <= 0) return;
+        if (category.categoryLv2.length <= 0) return;
         filterObject.category_lv2 = category.categoryLv2[0] && category.categoryLv2[0].id.toString();
       }
     };
