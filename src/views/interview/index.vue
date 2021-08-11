@@ -42,9 +42,6 @@ export default class Interview extends Vue {
   private InterviewIndex = setup(async () => {
     const store = useStore();
     let sideBarMenu: SideBarMenuType[] = reactive([]);
-    // onBeforeMount(() => {
-    //   console.log(111111);
-    // });
     await store.dispatch('getSpecialTypeCategoryList', { category_type: 1 }).then(res => {
       this.categoryLv1 = res.filter((item: LinkCategoryItemType) => item.category_level === 2);
       this.categoryLv1.forEach((item: LinkCategoryItemType, index: number) => {
