@@ -93,7 +93,6 @@ export const CollectionRequest = [
 // 留意域名
 // 限制用户提交次数
 // 您的文章内容质量高将会替换原文章链接
-// ejs
 
 // https://tool.lu/c/geek/
 // fest.js
