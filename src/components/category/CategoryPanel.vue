@@ -1,5 +1,5 @@
 <template>
-  <div class="category-index-box">
+  <div class="category-index-box" :id="CategoryPanel.LinkItemList.id">
     <div class="category-title"><i class="el-icon-discount"></i>{{ CategoryPanel.LinkItemList.categoryName }}</div>
     <VueDraggableNext
       class="category-card-container"

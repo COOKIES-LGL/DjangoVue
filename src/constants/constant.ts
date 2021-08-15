@@ -75,7 +75,6 @@ export const CollectionRequest = [
 // 轮播下拉组件
 // 分享收藏集链接
 // AST 编辑器
-// CODE PEN
 // 域名解析链路
 // 站长工具
 // 维基百科
@@ -95,10 +94,8 @@ export const CollectionRequest = [
 // 您的文章内容质量高将会替换原文章链接
 
 // https://tool.lu/c/geek/
-// fest.js
 // Django添加日志
 // 首页展示网站收录
 // 用户唯一标识统计 ip地址获取,需单独拉去一个App应用
-// 增加常用category
 // 域名 guilink.cn
 // 虎课网 https://huke88.com/

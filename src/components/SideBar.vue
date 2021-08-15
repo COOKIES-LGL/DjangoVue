@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar-container">
-    <div class="logo-box" @click="SideBar.changeCollapse">{{SideBar.logoText}}</div>
+    <div class="logo-box" @click="SideBar.changeCollapse">{{ SideBar.logoText }}</div>
     <el-menu
-      :default-active="SideBar.sideBarMenu[0].id"
+      :default-active="SideBar.sideBarMenu[0].id.toString()"
       class="el-menu-vertical-demo"
       :collapse="SideBar.isCollapse"
       :collapse-transition="true"
@@ -40,12 +40,12 @@ import { SideBarMenuType } from '@/constants';
     propsData: Object,
   },
   emits: {
-    changeSelect: ''
-  }
+    changeSelect: '',
+  },
 })
 export default class SideBar extends Vue {
   private propsData: SideBarMenuType[];
- 
+
   private SideBar = setup(() => {
     const sideBarMenu: SideBarMenuType[] = reactive(this.propsData);
     const logoText = ref('To Be Stronger');

@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { reactive, ref, watch, onMounted } from 'vue';
+import { reactive, watch, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { LinkCategoryItemType } from '@/api';
@@ -73,20 +73,20 @@ export default class FilterTab extends Vue {
       category.categoryLv1 = allLinkCategory.filter(
         (item: LinkCategoryItemType) => item.category_parent == currentCategoryLv1Id
       );
-      if(category.categoryLv1.length <= 0) return;
+      if (category.categoryLv1.length <= 0) return;
       filterObject.category_lv1 = category.categoryLv1[0].id.toString();
       if (category.categoryLv1 && category.categoryLv1.length > 0) {
         category.categoryLv2 = allLinkCategory.filter(
           (item: LinkCategoryItemType) => item.category_parent == category.categoryLv1[0].id
         );
-        if(category.categoryLv2.length <= 0) return;
+        if (category.categoryLv2.length <= 0) return;
         filterObject.category_lv2 = category.categoryLv2[0] && category.categoryLv2[0].id.toString();
       }
       if (category.categoryLv2 && category.categoryLv2.length > 0) {
         category.categoryLv3 = allLinkCategory.filter(
           (item: LinkCategoryItemType) => item.category_parent == category.categoryLv2[0].id
         );
-        if(category.categoryLv3.length <= 0) return;
+        if (category.categoryLv3.length <= 0) return;
         filterObject.category_lv3 = category.categoryLv3[0] && category.categoryLv3[0].id.toString();
       }
     };
@@ -151,7 +151,10 @@ export default class FilterTab extends Vue {
     const handleTab3Click = (item: any) => {
       const currentTab3Id = item.props ? item.props.name : item;
       filterObject.category_lv3 = currentTab3Id;
-      console.log(currentTab3Id, 'pageScroll');
+      const elementDiv: Element = document.getElementById(currentTab3Id);
+      if (elementDiv) {
+        elementDiv.scrollIntoView();
+      }
     };
 
     return {
