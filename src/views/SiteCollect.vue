@@ -1,5 +1,9 @@
 <template>
-  <CardPage :hideSearch="true" :sidebarList="categoryLv1" @changeSelect="SiteCollectIndex.changeCategoryLv1">
+  <CardPage
+    :hideSearch="true"
+    :sidebarList="SiteCollectIndex.sideBarMenu"
+    @changeSelect="SiteCollectIndex.changeCategoryLv1"
+  >
     <template v-slot:content>
       <div class="label-mesg-box">
         <div class="label-left-box">
@@ -28,7 +32,7 @@
       </div>
       <div class="category-title"><i class="el-icon-discount"></i>{{ SiteCollectIndex.currentCategoryLv1 }}</div>
       <div class="form-box">
-        <form-modal :categoryLv1Id="SiteCollectIndex.currentCategoryLv1Id"></form-modal>
+        <form-modal :currentCategoryLv1Id="SiteCollectIndex.currentCategoryLv1Id"></form-modal>
       </div>
     </template>
   </CardPage>
@@ -37,13 +41,13 @@
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
 import CardPage from '@/components/CardPage.vue';
-import { watch, ref } from 'vue';
+import { watch, ref, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { CollectionRequest } from '@/constants';
 import { LinkCategoryItemType } from '@/api';
-import { SideBarMenuType } from '@/constants';
 import FormModal from '@/components/FormModal.vue';
+import { SideBarMenuType, SideBarMenuIcons } from '@/constants';
 
 @Options({
   components: {
@@ -54,19 +58,27 @@ import FormModal from '@/components/FormModal.vue';
 export default class SiteCollect extends Vue {
   private CollectionRequest: string[] = CollectionRequest;
   private categoryLv1: LinkCategoryItemType[] = [];
-  private FormatData(linkCategoryList: LinkCategoryItemType[]) {
-    this.categoryLv1 = linkCategoryList.filter((item: LinkCategoryItemType) => item.category_level === 1);
-  }
-
+  private allLinkCategory: LinkCategoryItemType[] = [];
   private SiteCollectIndex = setup(async () => {
     const store = useStore();
     const route = useRoute();
-    if(route.query) {
+    if (route.query) {
       console.log(route.query);
     }
+    let sideBarMenu: SideBarMenuType[] = reactive([]);
+
     await store.dispatch('getCategoryList').then((res: LinkCategoryItemType[]) => {
-      this.FormatData(res);
+      this.categoryLv1 = res.filter((item: LinkCategoryItemType) => item.category_level === 1);
+      this.categoryLv1.forEach((item: LinkCategoryItemType, index: number) => {
+        const sideBaritem: SideBarMenuType = {
+          label: item.category_name,
+          id: item.id,
+          icon: SideBarMenuIcons[index],
+        };
+        sideBarMenu.push(sideBaritem);
+      });
     });
+
     let currentCategoryLv1Id = ref<number>(this.categoryLv1[0].id);
     let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
     const changeCategoryLv1 = function(newValue: SideBarMenuType) {
@@ -77,8 +89,9 @@ export default class SiteCollect extends Vue {
     watch(this.$props, (newValue: any) => {
       console.log(newValue);
     });
-    
+
     return {
+      sideBarMenu,
       changeCategoryLv1,
       currentCategoryLv1,
       currentCategoryLv1Id,
@@ -93,7 +106,7 @@ export default class SiteCollect extends Vue {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 50px 20px;
+  padding: 40px 20px;
   .label-left-box {
     text-align: left;
   }
@@ -108,13 +121,12 @@ export default class SiteCollect extends Vue {
 .category-title {
   font-size: 20px;
   width: 90%;
-  height: 50px;
+  height: 40px;
   padding-left: 20px;
-  border-bottom: 2px solid @infomation3;
+  border-top: 2px solid @table-border-color;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 15px;
 }
 .form-box {
   padding: 30px;

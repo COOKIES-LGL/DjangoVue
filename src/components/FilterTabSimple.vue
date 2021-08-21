@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { reactive, ref, watch, onMounted } from 'vue';
+import { reactive, watch, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { LinkCategoryItemType } from '@/api';
@@ -113,6 +113,10 @@ export default class FilterTabSimple extends Vue {
     const handleTab2Click = (item: any) => {
       const currentTab2Id = item.props ? item.props.name : item;
       filterObject.category_lv2 = currentTab2Id;
+      const elementDiv: Element = document.getElementById(currentTab2Id);
+      if (elementDiv) {
+        elementDiv.scrollIntoView();
+      }
     };
 
     return {

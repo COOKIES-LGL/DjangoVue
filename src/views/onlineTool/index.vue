@@ -7,7 +7,7 @@
     <template v-slot:content>
       <div class="block" v-if="InterviewIndex.sliderData.length > 0">
         <span class="demonstration">优选推荐</span>
-        <el-carousel class="panel-box" trigger="click" height="120px">
+        <el-carousel :interval="5000" class="panel-box" trigger="click" height="120px">
           <el-carousel-item class="slider-panel" v-for="(item, index) in InterviewIndex.sliderData.length" :key="item">
             <div class="slider-item" v-for="(item, i) in InterviewIndex.sliderData[index]" :key="'i' + i">
               <LinkCard :linkItem="item"></LinkCard>

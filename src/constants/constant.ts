@@ -99,3 +99,5 @@ export const CollectionRequest = [
 // 用户唯一标识统计 ip地址获取,需单独拉去一个App应用
 // 域名 guilink.cn
 // 虎课网 https://huke88.com/
+// https://www.npmjs.com/package/yapi-to-typescript
+// Elasticsearch、Logstash和Kibana kafaka flume

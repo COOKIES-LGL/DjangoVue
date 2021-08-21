@@ -63,7 +63,7 @@ export default class CategoryCard extends Vue {
   background-origin: padding-box;
   border-radius: 10px;
   background: #ffffff;
-  border: 2px solid @tab-background;
+  border: 2px solid @permission-border-color;
   transform: translate(0px);
   transition: transform 1s;
   &:hover {
@@ -80,7 +80,7 @@ export default class CategoryCard extends Vue {
     text-align: center;
     height: 24px;
     line-height: 24px;
-    border-bottom: 2px solid @cell-background;
+    border-bottom: 2px solid @table-border-color;
     position: relative;
     display: flex;
     .title {

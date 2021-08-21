@@ -92,7 +92,7 @@ export default class CategoryPanel extends Vue {
     flex-direction: row;
     align-items: center;
     background: #ffffff;
-    border-top: 1px solid @infomation;
+    border-top: 2px solid @table-border-color;
   }
   .category-card-container {
     width: 100%;

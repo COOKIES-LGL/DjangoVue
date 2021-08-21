@@ -29,7 +29,6 @@ import { SideBarMenuType, SideBarMenuIcons } from '@/constants';
 })
 export default class Discover extends Vue {
   private categoryLv1: LinkCategoryItemType[] = [];
-  private sideBarMenuIcons: string[] = SideBarMenuIcons;
 
   private DiscoverIndex = setup(async () => {
     const store = useStore();
@@ -44,7 +43,7 @@ export default class Discover extends Vue {
         const sideBaritem: SideBarMenuType = {
           label: item.category_name,
           id: item.id,
-          icon: this.sideBarMenuIcons[index],
+          icon: SideBarMenuIcons[index],
         };
         sideBarMenu.push(sideBaritem);
       });

@@ -65,7 +65,7 @@ export default class LinkCard extends Vue {
   background-origin: padding-box;
   border-radius: 10px;
   background: #ffffff;
-  border: 2px solid @infomation3;
+  border: 2px solid @permission-border-color;
   transform: translate(0px);
   transition: transform 1s;
   &:hover {
@@ -101,7 +101,7 @@ export default class LinkCard extends Vue {
     .title {
       width: 90%;
       line-height: 30px;
-      border-bottom: 1px solid @border-color;
+      border-bottom: 1px solid @table-border-color;
       font-weight: bold;
     }
     .desc {
