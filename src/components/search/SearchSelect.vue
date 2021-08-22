@@ -92,6 +92,7 @@ export default class SearchSelect extends Vue {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  font-weight: bold;
   cursor: pointer;
   .active-child-item {
     color: @infomation3;
