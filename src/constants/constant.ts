@@ -101,3 +101,5 @@ export const CollectionRequest = [
 // 虎课网 https://huke88.com/
 // https://www.npmjs.com/package/yapi-to-typescript
 // Elasticsearch、Logstash和Kibana kafaka flume
+// http://www.supervisord.org/ 监听node运行项目的改动
+// https://www.npmjs.com/package/pm2https://www.npmjs.com/package/pm2  PM2 是 Node 进程管理工具，可以利用它来简化很多 Node 应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单
