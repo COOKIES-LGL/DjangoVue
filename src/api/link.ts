@@ -17,7 +17,7 @@ export const getLinkList = async (params: GetLinkListParams): Promise<AxiosRespo
 
 export const postLinkListForOrder = async (params: PostLinkListForOrderParams): Promise<AxiosResponse> => {
   const res: AxiosResponse<LinkItemType> = await api.post('/orderLinksByIds/', {
-    params,
+    ...params,
   });
   return res;
 };
@@ -43,8 +43,15 @@ export const addSpecialLink = async (params: GetLinkListParams): Promise<AxiosRe
   return res;
 };
 
-export const addLink = async (params: GetLinkListParams): Promise<AxiosResponse> => {
-  const res: AxiosResponse = await api.post('/', {
+export const addLinks = async (params: GetLinkListParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse = await api.post('addAndEditLinks/', {
+    ...params,
+  });
+  return res;
+};
+
+export const editLinks = async (params: GetLinkListParams): Promise<AxiosResponse> => {
+  const res: AxiosResponse = await api.put('addAndEditLinks/', {
     params,
   });
   return res;

@@ -106,7 +106,7 @@ export default class SiteCollect extends Vue {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 20px;
+  padding: 20px 20px 30px;
   .label-left-box {
     text-align: left;
   }
@@ -130,7 +130,7 @@ export default class SiteCollect extends Vue {
 }
 .form-box {
   padding: 30px;
-  margin: 20px auto;
+  margin: 5px auto;
   width: 90%;
 }
 </style>

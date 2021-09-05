@@ -22,7 +22,7 @@
 </template>
 <script lang="ts">
 import { Options, Vue, setup } from 'vue-class-component';
-import { ref, onBeforeMount, reactive } from 'vue';
+import { ref, reactive, onBeforeMount } from 'vue';
 import CardPage from '@/components/CardPage.vue';
 import { useStore } from 'vuex';
 import Category from './Category.vue';
