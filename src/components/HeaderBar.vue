@@ -34,7 +34,6 @@ export default class HeaderBar extends Vue {
   private HeaderBar = setup(() => {
     const currentIndex = ref<string>('home');
     const navTo = (item: HeaderBarMenuType) => {
-      console.log(item);
       Router.push({
         name: item.value,
       });

@@ -232,14 +232,17 @@ export default class FormModal extends Vue {
       form.grandparent_id = Number(filterObject.category_lv2.id);
       validate()
         .then(() => {
-          console.log('调用接口');
-
-          addLinks(form);
+          addLinks(form).then((res: any) => {
+            console.log(res);
+            if (res) {
+              ElMessage.success('感谢您的提交，1-2个工作日审核通过后您的站点将被收录。');
+              window.location.reload();
+            }
+          });
         })
         .catch(err => {
           ElMessage.error(err);
         });
-      console.log(form, '提交表单');
     };
 
     const resetClick = function() {

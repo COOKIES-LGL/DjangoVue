@@ -81,7 +81,7 @@ export const CollectionRequest = [
 
 // 在线五子棋 http://html5.huceo.com/wzq/
 // 渐进式表单输入
-// pycharm注册码 http://vrg123.com/ 4565 https://www.yht7.com/news/142272
+// https://key.words.run/cn/
 // Docker Hub https://hub.docker.com/search?q=mysql&type=image
 // 脉脉
 // 3D three.js 制作三D展厅
@@ -97,8 +97,20 @@ export const CollectionRequest = [
 // Django添加日志
 // 首页展示网站收录
 // 用户唯一标识统计 ip地址获取,需单独拉去一个App应用
-// 域名 guilink.cn
+// 域名 bigold.cn
 // 虎课网 https://huke88.com/
 // https://www.npmjs.com/package/yapi-to-typescript
 // Elasticsearch、Logstash和Kibana kafaka flume
 // http://www.supervisord.org/ 监听node运行项目的改动
+// https://juejin.cn/post/7006483808832716813?utm_source=gold_browser_extension
+// https://juejin.cn/post/7008303011655057444?utm_source=gold_browser_extension
+// https://juejin.cn/post/6997070653010477087
+// https://juejin.cn/post/6844903701434335246
+// 某某与某某的区别
+// 提供域名搜索
+// 添加前需要判断是否已经存在
+// 贡献者列表
+// https://github.com/vuejs
+// https://juejin.cn/post/7012012633180078117?utm_source=gold_browser_extension
+// chrome 插件运行选中的代码
+// vscode 插件HTML中的变量跳转

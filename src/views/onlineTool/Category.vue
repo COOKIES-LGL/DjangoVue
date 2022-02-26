@@ -45,11 +45,10 @@ export default class Category extends Vue {
     const router = useRouter();
 
     const filterChange = (filterObject: any, category: LinkCategoryItemType[]) => {
-      console.log(filterObject, 'object', category);
       if(!category) return;
       router.push({
         // 增加router参数
-        path: '/onlinetool',
+        path: '/onlineTool',
         query: {
           lv1: filterObject.category_lv1,
           lv2: filterObject.category_lv2,
