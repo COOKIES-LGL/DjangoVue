@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue';
+import PlaceHolder from '../views/PlaceHolder.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -85,6 +86,14 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/placeholder',
+    name: 'placeholder',
+    component: PlaceHolder,
+    meta: {
+      title: '任意格式图片获取',
+    },
+  },  
   {
     path: '/:pathMatch(.*)',
     meta: {

@@ -14,6 +14,7 @@ export const HeaderBarMenu = [
   { label: '在线工具', value: 'onlineTool' },
   { label: '网址收录', value: 'siteCollect' },
   { label: '关于我们', value: 'aboutUs' },
+  { label: 'PlaceHolder', value: 'placeholder' },
 ];
 
 export const SideBarMenuIcons: string[] = [
@@ -114,3 +115,12 @@ export const CollectionRequest = [
 // https://juejin.cn/post/7012012633180078117?utm_source=gold_browser_extension
 // chrome 插件运行选中的代码
 // vscode 插件HTML中的变量跳转
+// tree-kill
+// serve-favicon
+// lru-cache
+// bootCDN.cn
+// pubsub.js 发布订阅
+// https://laixiazheteng.com/one
+// https://www.npmjs.com/package/pre-commit
+// aframe.js https://www.techbrood.com/aframe/introduction?p=getting-started
+// babylon https://www.babylonjs.com/

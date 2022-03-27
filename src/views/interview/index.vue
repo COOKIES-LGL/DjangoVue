@@ -80,7 +80,6 @@ export default class Interview extends Vue {
     let currentCategoryLv1Id = ref<number>(this.categoryLv1[0].id);
     let currentCategoryLv1 = ref<string>(this.categoryLv1[0].category_name);
     const changeCategoryLv1 = function(newValue: SideBarMenuType) {
-      console.log(newValue, 'newValue');
       currentCategoryLv1.value = newValue.label;
       currentCategoryLv1Id.value = newValue.id;
       getSpecialLinks(newValue.id);

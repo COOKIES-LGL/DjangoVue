@@ -32,10 +32,7 @@ export default class AddCard extends Vue {
       if (route.query) {
         router.push({
           path: '/siteCollect',
-          query: {
-            lv1: route.query.lv1,
-            lv2: route.query.lv2,
-          },
+          query: route.query,
         });
       } else {
         router.push({

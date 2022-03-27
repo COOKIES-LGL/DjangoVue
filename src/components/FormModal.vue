@@ -194,7 +194,7 @@ export default class FormModal extends Vue {
       const queryObject = route.query;
       formatData(this.currentCategoryLv1Id);
       if (queryObject.lv1 && queryObject.lv2) {
-        // handleTab1Click(queryObject.lv1);
+        handleTab1Change(queryObject.lv1);
         // handleTab2Click(queryObject.lv2);
         // handleTab3Click(queryObject.lv3);
       }
