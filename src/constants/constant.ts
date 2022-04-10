@@ -79,14 +79,10 @@ export const CollectionRequest = [
 // 域名解析链路
 // 站长工具
 // 维基百科
-
-// 在线五子棋 http://html5.huceo.com/wzq/
 // 渐进式表单输入
 // https://key.words.run/cn/
 // Docker Hub https://hub.docker.com/search?q=mysql&type=image
-// 脉脉
 // 3D three.js 制作三D展厅
-
 // 使用A标签进行跳转
 // 图片制作,(gif表情, 任意格式图片)
 // 更改首页
@@ -115,12 +111,3 @@ export const CollectionRequest = [
 // https://juejin.cn/post/7012012633180078117?utm_source=gold_browser_extension
 // chrome 插件运行选中的代码
 // vscode 插件HTML中的变量跳转
-// tree-kill
-// serve-favicon
-// lru-cache
-// bootCDN.cn
-// pubsub.js 发布订阅
-// https://laixiazheteng.com/one
-// https://www.npmjs.com/package/pre-commit
-// aframe.js https://www.techbrood.com/aframe/introduction?p=getting-started
-// babylon https://www.babylonjs.com/
