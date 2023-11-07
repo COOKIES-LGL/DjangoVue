@@ -3,7 +3,7 @@ import { ENV } from '@/config';
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 
-const baseURL: string = `${ENV.HOST}${ENV.BASE_URL}api`;
+const baseURL = `${ENV.HOST}${ENV.BASE_URL}api`;
 
 Cookies.set('SPC_CDS_VER', '2');
 

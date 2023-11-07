@@ -8789,9 +8789,9 @@ vue-class-component@^8.0.0-0:
   integrity sha1-22ks2XZW65oIIGwD0Lc5jNsdlCA=
 
 vue-draggable-next@^2.0.1:
-  version "2.0.1"
-  resolved "http://npm.shopee.io/vue-draggable-next/-/vue-draggable-next-2.0.1.tgz#bb64efb302c7b8e759fd3f21427871789b624c67"
-  integrity sha512-8+7gqNL0Vb4GpXBTtGQx8yAWhvn8y61aoDgKmZwDu8b5dFB2wlj1r5SWtbqV26rwg6R8FRHVdlo55lwaOA51wA==
+  version "2.2.1"
+  resolved "https://registry.npmmirror.com/vue-draggable-next/-/vue-draggable-next-2.2.1.tgz#adbe98c74610cca8f4eb63f92042681f96920451"
+  integrity sha512-EAMS1IRHF0kZO0o5PMOinsQsXIqsrKT1hKmbICxG3UEtn7zLFkLxlAtajcCcUTisNvQ6TtCB5COjD9a1raNADw==
 
 vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.6.0:
   version "7.6.0"
